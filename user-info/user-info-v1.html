@@ -1,150 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.v1.css">
-    <title>User Info</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Компетенции</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<style>
+		body {
+			font-family: sans-serif;
+			padding: 10px;
+            margin: 0 40px;
+		}
+        h3 {
+            color: #999;
+        }
+		.comments {
+			background: #d6e0f7;
+			padding: 15px;
+			min-width: 300px;
+			max-height: 100px;
+			/*margin: 0 auto;*/
+			margin: 30px;
+			float: right;
+			border-radius: 10px;
+			overflow: auto;
+			transition: 1s;
+		}
+		.comments small {
+			color:  #999;
+		}
+
+		.comments.collapsed {
+			max-height: 8px;
+			overflow: hidden;
+		}
+
+		.plus-btn {
+			cursor: pointer;
+		}
+		.plus-btn path {
+			fill: #1b66b1;
+		}
+		.plus-btn:hover path {
+			fill: #3986e7;
+		}
+
+		.input-block {
+			height: 50px;
+		    display: flex;
+    		align-items: center;
+		}
+		.input-box {
+			display: none;
+		}
+        header {
+            display: flex;
+
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        #app {
+            display: flex;
+            /* flex-direction: column; */
+            
+        }
+       
+        .one_col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            /* flex: 2; */
+
+        }
+        .two_col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-left: 1px solid #e5e5e5;
+            /* flex: 1; */
+        }
+        .header__left {
+            /* flex: 2; */
+            min-height: 15vh;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .header__rigth {
+            /* flex: 1; */
+            min-height: 15vh;
+            padding: 0 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .sections__left {
+            flex: 2;
+            padding: 20px;
+        }
+        .sections__rigth {
+            flex: 1;
+        }
+
+	</style>
 </head>
 <body>
-    <div class="container">
-        <div class="one__collumn">
-            <div class="header__image">
-                <img src="./img/icon/Лого_ВТК-С.png" alt="foto" width="250" height="110" class="image" />
-            </div>
-            
-            <div class="chapter">
-                <div class="title__chapter">КОНТАКТЫ</div>
-                <div class="title__chapter-img">
-                    <img src="./img/icon/plus (1).png" alt="plus"  width="16px" height="16px" class="icon">
-                </div>
-            
-            </div>
-            <div class="main__skills">
-                <div class="contacts"><img src="./img/icon/phone.png" alt="phone"  width="16px" height="16px" class="icon" />
-                    &nbsp;&nbsp;1111
-                </div>
-                <div class="contacts"><img src="./img/icon/phone.png" alt="phone"  width="16px" height="16px" class="icon" />
-                    &nbsp;&nbsp;+7 (111) 111-11-11
-                </div>
-                <div class="contacts">
-                    <img src="./img/icon/email.png" alt="email"  width="16px" height="16px" class="icon" />
-                      &nbsp;&nbsp;vtc@vtc-service.ru
-                </div>
-            </div>
-            <div class="title__chapter">КЛЮЧЕВЫЕ НАВЫКИ</div>
-            <div class="main__skills">
-                <li class="main__skills-main-list">Административно-хозяйственная деятельность</li> 
-                <li class="main__skills-main-list">Учет ТМЦ</li>
-                <li class="main__skills-main-list">Закупки</li>
-                <li class="main__skills-main-list">Договорная работа</li>
-                <li class="main__skills-main-list">Разработка регламентов</li>
-                <li class="main__skills-main-list">Контроль исполнения решений</li>
-                <li class="main__skills-main-list">Складской Учет</li>
-                <li class="main__skills-main-list">Контроль хозяйственной деятельности</li>
-            </div>
-            <div class="title__chapter">ТЕХНИЧЕСКИЕ НАВЫКИ</div>
-            <div class="main__skills">
-                <li class="main__skills-main-list">Word</li>
-                <li class="main__skills-main-list">Excel</li>
-                <li class="main__skills-main-list">PowerPoint</li>
-                <li class="main__skills-main-list">Работа с фото</li>
-                <li class="main__skills-main-list">Adobe acrobat</li>
-            </div>
-            
-            <div class="title__chapter">ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</div>
-            <div class="main__skills">
-                <div class="header__birthday">
-                    <div class="header__birthday-title">Дата рождения:</div>
-                    <div class="header__birthday-data">9 августа 1983</div>
-                </div>
-                <div class="header__nationality">
-                    <div class="header__nationality-title">Гражданство: </div>
-                    <div class="header__nationality-data">Россия</div>
-                </div>
-                <div class="header__adress">
-                    <div class="header__adress-title">Адерес проживания:</div>
-                    <div class="header__adress-data">Moscow</div>
-                </div>
-                <div class="header__trips">
-                    <div class="header__trips-title">Готовность к коммандировкам:</div>
-                    <div class="header__trips-data">Нет</div>
-                </div>
-                <div class="header__trips">
-                    <div class="header__trips-title">Водительское удостоверение категории:</div>
-                    <div class="header__trips-data">В</div>
-                </div>
-            </div>
-        </div>
-        <div class="two__collumn">
-           
-        <div class="header">
-                       
-                <div class="header__name">
-                    <div class="header__lastName">Акиньшина</div>
-                    <div class="header__firstName">Любовь</div>            
-                    <div class="header__patronymic">Валерьевна</div>
-                </div> 
-                <div class="main__position">                   
-                        Административный директор, руководитель административно-хозяйственного отдела                    
-                </div>               
-           
-        </div>
-        <hr size="3px" noshade>
-        <div class="main">     
-          
-            <div class="main__experience">
-                <div class="main__experience-title">
-                    <div class="main__experience-title-caption">Опыт работы:</div>
-                    <div class="main__experience-title-year">15 лет</div>
-                </div>
-                <div class="main__experience-box">
-                    <div class="main__experience-date">
-                        <div class="main__experience-date-start">Август 2014</div>
-                        <div class="main__experience-date-end">Декабрь 2019</div>
-                    </div>
-                    <div class="main__experience-company">
-                        <div class="main__experience-company-name">ООО "АМ-Тех"</div>
-                        <div class="main__experience-company-competence">
-                            - Управление административной деятельностью компании;<br> 
-                            - Управление административным персоналом;<br>
-                            - Бюджетирование административно-хозяйственной деятельности.
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="main__education">
-                <div class="main__education-title">Образование:</div>
-                <div class="main__education-box">
-                    <div class="main__education-date">
-                        <div class="main__education-date-start">2000</div>
-                        <div class="main__education-date-end">2005</div>
-                    </div>
-                    <div class="main__education-institution">
-                        <div class="main__education-institution-name">
-                            Белгородский государственный технологический университетим. В.Г. Шухова, Белгород
-                        </div>
-                        <div class="main__education-institution-faculty">
-                            Экономический, Экономика и управление на предприятии промышленности строительных материалов
-                        </div>
-                    </div>
+    <div class="search">
+        <input type="search" name="text-search" id="" placeholder="Может поищем что-нибудь...">
+        <span class="searchBtn" onclick="searchText()">Найти</span>
+    </div>
+
+    <input-block model=""/>
+<content id="app">
+    
+        <div class="one_col">
+            <div class="header__left">
+                <div class="user-info">
+                    <h1>{{fullname}}</h1>
+                    <h4>{{position}}</h4>
                 </div>
             </div>
+            <div class="sections__left">
+                <section>
+                    <h3>Образование</h3>
+                    <h3>🎓{{education}}</h3>
+                    <h4>{{faculty}}</h4>
+                </section>
+                <section>
+                    <h3>Навыки</h3>
+                    <ol>
+                        <li v-for="e in competentions">
+                            {{ e }}
+                        </li>
+                    </ol>
+                    <input-block model="competentions"/>       
+                </section>
+                <section>                    
+                    <h3>Сертификаты</h3>                    
+                    <ul>
+                        <li v-for="e in certifications">
+                            <small>{{e.year}}</small>
+                            {{ e.text }}
+                        </li>
+                    </ul>
+                    <input-block model="certifications"/>
+                </section>
+            </div>
+            <span>🚗Имеется автомобиль; Права категории B</span>
         </div>
-        </div>
-        <!-- <div class="footer">
-            <div class="footer__title">Заметки:</div>
-            <div class="footer__about">
+        <div class="two_col">
+            <div class="header__rigth">
+
+                <div class="user-contacts">
+                    <div class="contacts">Служебный телефон: 1111</div>
+                    <div class="contacts">Моб. телефон: +7 (111) 111-11-11</div>
+                    <div class="contacts">E-mail:&nbsp;<a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a></div>
+                    <div class="contacts">Город: Москва</div>
+                    <div class="contacts">Начальник: Иванов Иван Иванович</div>
+                </div>             
+       
                 
             </div>
-        </div> -->
-    </div>       
+            <div class="sections__rigth">
+                <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
+                    <div v-for="e in comments">
+                        {{ e.text }}
+                        <small>{{ e.author }}</small>
+                    </div>
+                </section>
+            </div>
+        </div>   
+</content>
+
+<component style="display: none;" id="input-block-tpl">
+	<div class="input-block">
+		<div class="input-box">
+			<input type="text"/>
+			<button onclick="clickAdd(this)" :data-model="model">Добавить</button>
+		</div>
+		<span class="plus-btn" onclick="clickPlus(this);">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+				<path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/>
+			</svg>
+		</span>
+	</div>
+</component>
+
+<script type="text/javascript">
+
+
+	function clickPlus(e) {
+		$(e).hide()
+		$('.input-box', e.parentElement).fadeIn()
+	}
+
+	function clickAdd(e) {
+		$(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
+		const model = $(e).data('model')
+		const value = $('input', e.parentElement).val()
+		if (value) data[model].push(value)
+	}
+
+
+
+	const data = {
+		hasCommentsPerm: true,
+		input_comp:'',
+
+		fullname: "Акиньшина Любовь Валерьевна",
+        position: "Руководитель административно-хозяйственного отдела",
+		education: "Белгородский государственный технологический университетим. В.Г. Шухова",
+        faculty: "Экономика и управление на предприятии промышленности строительных материалов",
+
+		comments: [
+			{text: 'раз коммент', author: 'hr'},
+			{text: 'два коммент', author: 'начальник'},
+			{text: 'три коммент', author: 'ещё кто-то'},
+		],
+
+		competentions: [
+			'Эксплуатация и администрирование телефонной станции AVAYA, заключение договоров с ПАО МГТС. Техническое обслуживание центра,проверка работоспособности слаботочных систем.',
+			'Avaya CM CCE CMS BCMS APC AES EMC',
+			'Asterisk',
+            'UNIX: ssh, samba, amanda, bacula, openvpn, httpd, named, sendmail, mysql, motion, ftp, mysql, firebird.',
+            'Windows: Windows 2003 Server, Active Directory, remote desktop, MsSQL.Установка, настройка оборудования voip. Установка, настройка оборудования FCD IP.',
+            'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
+		],
+
+		certifications: [
+			{year: 2020, text:'CISCO CCNA: Колледж предпринимательства 11, Свидетельство'},
+			{year: 2016, text:'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", г. Москва, Свидетельство'},
+			{year: 2012, text:'UNIX введение в администрирование: Специалист при МВТУ им.Баумана, Свидетельство'},
+            {year: 2012, text:'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x): Комптек, Телефония'},
+            {year: 2010, text:'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", Администрирование систем гражданского шифрования'},
+		]
+	}
+
+
+	Vue.component('input-block', {props: ['model'],	template: $('#input-block-tpl').html()})
+
+	const app = new Vue({el: '#app', data})
+</script>
 </body>
 </html>
-
-<!--
-    Дополнительное образование
-
--->
