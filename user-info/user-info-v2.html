@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.v1.css">
+    <title>User Info</title>
+</head>
+<body>
+
+    <header>
+        <div class="search">
+            <input type="search" name="text-search" id="" placeholder="Может поищем что-нибудь...">
+            <span class="searchBtn" onclick="searchText()">Найти</span>
+        </div>
+        <div class="info-box">
+            <div class="user-info">
+                <h1 class="userName">Акиньшина Любовь Валерьевна</h1>
+                <h4 class="position">Руководитель административно-хозяйственного отдела </h4> 
+                <div class="education">
+                    <h5>Образование:</h5>
+                    <div class="institution-name">
+                        Белгородский государственный технологический университетим. В.Г. Шухова
+                    </div>
+                    <div class="institution-faculty">
+                        Экономика и управление на предприятии промышленности строительных материалов
+                    </div>
+                </div>
+            </div>
+            <div class="user-contacts">
+                <div class="contacts">Служебный телефон: 1111</div>
+                <div class="contacts">Моб. телефон: +7 (111) 111-11-11</div>
+                <div class="contacts">E-mail:&nbsp;<a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a></div>
+                <div class="contacts">Город: Москва</div>
+                <div class="contacts">Начальник: Иванов Иван Иванович</div>
+            </div>
+        </div>
+    </header>
+    <hr size="5px" style="margin:0 15px;" />
+    <hr noshade size="3px" style="margin:0 15px 15px 15px;" />    
+
+    <div class="container">
+        <div class="wrapper">
+            <div class="header">
+                <h3>Примечания</h3>
+                <input type="text" placeholder="Добавить примечание..." id="note">
+                <!-- <span class="addBtn" onclick="addNote()">Добавить</span> -->
+                <input type="button" class="addBtn" value="Добавить" onclick="addNote()" />
+            </div>
+            <ul id="notes">
+                
+            </ul>
+        </div>
+
+        <div class="wrapper">
+            <div class="header">
+                <h3>Сертификаты</h3>
+                <input type="text" placeholder="Добавить новый сертификат..." id="certificate">
+                <span class="addBtn" onclick="addCertificate()">Добавить</span>
+            </div>
+            <ul id="certificates">
+        
+            </ul>
+        </div>
+
+        <div class="wrapper">
+            <div class="header">
+                <h3>Навыки</h3>
+                <input type="text" placeholder="Добавить новый навык..." id="skill">
+                <span class="addBtn" onclick="addSkill()">Добавить</span>
+            </div>
+            <ul id="skills">
+        
+            </ul>
+        </div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+</html>

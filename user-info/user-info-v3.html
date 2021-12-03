@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Прстой шаблонизатор vue</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<style>
+		body {
+			font-family: sans-serif;
+			padding: 10px;
+		}
+		.comments {
+			background: #d6e0f7;
+			padding: 15px;
+			width: 500px;
+			max-height: 100px;
+			/*margin: 0 auto;*/
+			margin: 30px;
+			float: right;
+			border-radius: 10px;
+			overflow: auto;
+			transition: 1s;
+		}
+		.comments small {
+			color:  #999;
+		}
+
+		.comments.collapsed {
+			max-height: 8px;
+			overflow: hidden;
+		}
+
+		.plus-btn {
+			cursor: pointer;
+		}
+		.plus-btn path {
+			fill: #1b66b1;
+		}
+		.plus-btn:hover path {
+			fill: #3986e7;
+		}
+
+		.input-block {
+			height: 50px;
+		    display: flex;
+    		align-items: center;
+		}
+		.input-box {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+<content id="app">
+	<h1>{{fullname}}</h1>
+	<h3>🎓{{education}}</h3>
+    <span>🚗Имеется автомобиль;Права категории B</span>
+	<section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
+		<div v-for="e in comments">
+			{{ e.text }}
+			<small>{{ e.author }}</small>
+		</div>
+	</section>
+	<section>
+		Навыки
+		<ol>
+			<li v-for="e in competentions">
+				{{ e }}
+			</li>
+		</ol>
+		<input-block model="competentions"/>
+	</section>
+	<section>
+		Сертификаты
+		<ul>
+			<li v-for="e in certifications">
+                <small>{{e.year}}</small>
+				{{ e.text }}
+			</li>
+		</ul>
+		<input-block model="certifications"/>
+	</section>
+</content>
+
+<component style="display: none;" id="input-block-tpl">
+	<div class="input-block">
+		<div class="input-box">
+			<input type="text"/>
+			<button onclick="clickAdd(this)" :data-model="model">Добавить</button>
+		</div>
+		<span class="plus-btn" onclick="clickPlus(this);">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+				<path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/>
+			</svg>
+		</span>
+	</div>
+</component>
+
+<script type="text/javascript">
+
+
+	function clickPlus(e) {
+		$(e).hide()
+		$('.input-box', e.parentElement).fadeIn()
+	}
+
+	function clickAdd(e) {
+		$(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
+		const model = $(e).data('model')
+		const value = $('input', e.parentElement).val()
+		if (value) data[model].push(value)
+	}
+
+
+
+	const data = {
+		hasCommentsPerm: true,
+		input_comp:'',
+
+		fullname: "Фамилия Имя Отчестово",
+		education: "МГУ",
+
+		comments: [
+			{text: 'раз коммент', author: 'hr'},
+			{text: 'два коммент', author: 'начальник'},
+			{text: 'три коммент', author: 'ещё кто-то'},
+		],
+
+		competentions: [
+			'Эксплуатация и администрирование телефонной станции AVAYA, заключение договоров с ПАО МГТС. Техническое обслуживание центра,проверка работоспособности слаботочных систем.',
+			'Avaya CM CCE CMS BCMS APC AES EMC',
+			'Asterisk',
+            'UNIX: ssh, samba, amanda, bacula, openvpn, httpd, named, sendmail, mysql, motion, ftp, mysql, firebird.',
+            'Windows: Windows 2003 Server, Active Directory, remote desktop, MsSQL.Установка, настройка оборудования voip. Установка, настройка оборудования FCD IP.',
+            'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
+		],
+
+		certifications: [
+			{year: 2020, text:'CISCO CCNA: Колледж предпринимательства 11, Свидетельство'},
+			{year: 2016, text:'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", г. Москва, Свидетельство'},
+			{year: 2012, text:'UNIX введение в администрирование: Специалист при МВТУ им.Баумана, Свидетельство'},
+            {year: 2012, text:'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x): Комптек, Телефония'},
+            {year: 2010, text:'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", Администрирование систем гражданского шифрования'},
+		]
+	}
+
+
+	Vue.component('input-block', {props: ['model'],	template: $('#input-block-tpl').html()})
+
+	const app = new Vue({el: '#app', data})
+</script>
+</body>
+</html>
