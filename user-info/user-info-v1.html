@@ -1,59 +1,78 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Компетенции</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<style>
-		body {
-			font-family: sans-serif;
-			padding: 10px;
-            margin: 0 40px;
-		}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Компетенции</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        h2 {
+            color: #999;
+            margin-bottom: 10px;
+        }
+
         h3 {
             color: #999;
         }
-		.comments {
-			background: #d6e0f7;
-			padding: 15px;
-			min-width: 300px;
-			max-height: 100px;
-			/*margin: 0 auto;*/
-			margin: 30px;
-			float: right;
-			border-radius: 10px;
-			overflow: auto;
-			transition: 1s;
-		}
-		.comments small {
-			color:  #999;
-		}
 
-		.comments.collapsed {
-			max-height: 8px;
-			overflow: hidden;
-		}
+        .comments {
+            background: #d6e0f7;
+            padding: 15px;
+            min-width: 300px;
+            max-height: 100px;
+            /*margin: 0 auto;*/
+            /* margin: 30px; */
+            float: right;
+            border-radius: 10px;
+            overflow: auto;
+            transition: 1s;
+        }
 
-		.plus-btn {
-			cursor: pointer;
-		}
-		.plus-btn path {
-			fill: #1b66b1;
-		}
-		.plus-btn:hover path {
-			fill: #3986e7;
-		}
+        .comments small {
+            color: #999;
+        }
 
-		.input-block {
-			height: 50px;
-		    display: flex;
-    		align-items: center;
-		}
-		.input-box {
-			display: none;
-		}
+        .comments.collapsed {
+            max-height: 8px;
+            overflow: hidden;
+        }
+
+        .plus-btn {
+            cursor: pointer;
+        }
+
+        .plus-btn path {
+            fill: #1b66b1;
+        }
+
+        .plus-btn:hover path {
+            fill: #3986e7;
+        }
+
+        .input-block {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-box {
+            display: none;
+        }
+
         header {
             display: flex;
 
@@ -61,12 +80,13 @@
             justify-content: space-around;
             border-bottom: 1px solid #e5e5e5;
         }
+
         #app {
             display: flex;
             /* flex-direction: column; */
-            
+
         }
-       
+
         .one_col {
             display: flex;
             flex-direction: column;
@@ -74,6 +94,7 @@
             /* flex: 2; */
 
         }
+
         .two_col {
             display: flex;
             flex-direction: column;
@@ -81,71 +102,199 @@
             border-left: 1px solid #e5e5e5;
             /* flex: 1; */
         }
+
         .header__left {
             /* flex: 2; */
-            min-height: 15vh;
+            min-height: 20vh;
             border-bottom: 1px solid #e5e5e5;
+            padding: 0 20px;
         }
+
         .header__rigth {
             /* flex: 1; */
             min-height: 15vh;
             padding: 0 20px;
             border-bottom: 1px solid #e5e5e5;
         }
+
         .sections__left {
             flex: 2;
             padding: 20px;
         }
+
         .sections__rigth {
             flex: 1;
+            padding: 20px;
         }
 
-	</style>
-</head>
-<body>
+        .navi-wrapper {
+            background-color: #ccc;
+        }
 
-    <div class="search">
-        <input type="search" name="text-search" id="" placeholder="Может поищем что-нибудь...">
-        <span class="searchBtn" onclick="searchText()">Найти</span>
+        .columns-wrapper {
+            margin: 0 auto;
+            /* width: 1000px; */
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .navi-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 80px;
+        }
+
+        .navi-item_search {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-left: 300px;
+            white-space: nowrap;
+        }
+
+        input {
+            border: none;
+            width: 95%;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+
+        .addBtn,
+        .searchBtn {
+            margin: 10px 0 0 0;
+            padding: 10px 30px;
+            background: #ebeaea;
+            color: #555;
+            text-align: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .searchBtn:hover {
+            background-color: #929191;
+        }
+
+        .addBtn:hover {
+            background-color: #bbb;
+        }
+
+        #app {
+            margin: 0 50px;
+            padding-top: 30px;
+        }
+
+        .education {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .education-faculty {
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .user-info {}
+
+        .list {}
+
+        .qualifications {
+            display: flex;
+            font-size: 1.1rem;
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .qualifications-year {
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding-right: 30px;
+        }
+
+        .competencies {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contacts {
+            margin-bottom: 10px;
+        }
+
+        .birthday {
+            font-size: 1.1rem;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navi-wrapper">
+        <div class="columns-wrapper">
+            <div class="navi-menu">
+                <a href="" class="logo-wrapper" href="/">
+                    <span class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" /></span>
+                </a>
+                <div class="navi-item_search">
+                    <div class="search">
+                        <input type="search" name="text-search" id="" placeholder="Может поищем что-нибудь...">
+                        <span class="searchBtn" onclick="searchText()">Найти</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <input-block model=""/>
-<content id="app">
-    
+
+
+
+
+
+
+
+    <content id="app" class="columns-wrapper">
+
         <div class="one_col">
             <div class="header__left">
                 <div class="user-info">
                     <h1>{{fullname}}</h1>
-                    <h4>{{position}}</h4>
+                    <h3>{{position}}</h3>
+                    <div class="birthday">Дата рождения: 01 декабря 1974 года</div>
                 </div>
             </div>
             <div class="sections__left">
                 <section>
-                    <h3>Образование</h3>
-                    <h3>🎓{{education}}</h3>
-                    <h4>{{faculty}}</h4>
+                    <h2>Образование</h2>
+                    <div class="education">
+                        <!--🎓&nbsp;-->{{education}}</div>
+                    <div class="education-faculty">{{faculty}}</div>
                 </section>
                 <section>
-                    <h3>Навыки</h3>
-                    <ol>
-                        <li v-for="e in competentions">
+                    <h2>Навыки</h2>
+                    <ol class="list">
+                        <li v-for="e in competentions" class="competencies">
                             {{ e }}
                         </li>
                     </ol>
-                    <input-block model="competentions"/>       
+                    <input-block model="competentions" />
                 </section>
-                <section>                    
-                    <h3>Сертификаты</h3>                    
-                    <ul>
-                        <li v-for="e in certifications">
-                            <small>{{e.year}}</small>
-                            {{ e.text }}
+                <section>
+                    <h2>Повышение квалификации, курсы</h2>
+                    <ul class="list">
+                        <li v-for="e in certifications" class="qualifications">
+                            <div class="qualifications-year">{{e.year}}</div>
+                            <div>{{ e.text }}</div>
                         </li>
                     </ul>
-                    <input-block model="certifications"/>
+                    <input-block model="certifications" />
                 </section>
             </div>
-            <span>🚗Имеется автомобиль; Права категории B</span>
+
         </div>
         <div class="two_col">
             <div class="header__rigth">
@@ -153,92 +302,132 @@
                 <div class="user-contacts">
                     <div class="contacts">Служебный телефон: 1111</div>
                     <div class="contacts">Моб. телефон: +7 (111) 111-11-11</div>
-                    <div class="contacts">E-mail:&nbsp;<a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a></div>
+                    <div class="contacts">E-mail:&nbsp;<a href="mailto:vtc@vtc-service.ru"
+                            target="_blank">vtc@vtc-service.ru</a></div>
                     <div class="contacts">Город: Москва</div>
                     <div class="contacts">Начальник: Иванов Иван Иванович</div>
-                </div>             
-       
-                
+                </div>
+
+
             </div>
+
             <div class="sections__rigth">
+                <section>
+                    <h3>Дополнительная информация</h3>
+                    <div>
+                        <!--🚗&nbsp;-->Личный автомобиль: Да
+                    </div>
+                    <div>Права категории: B</div>
+                </section>
+                <h3>Комментарии</h3>
                 <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
                     <div v-for="e in comments">
                         {{ e.text }}
                         <small>{{ e.author }}</small>
                     </div>
                 </section>
+
+
             </div>
-        </div>   
-</content>
+        </div>
+    </content>
 
-<component style="display: none;" id="input-block-tpl">
-	<div class="input-block">
-		<div class="input-box">
-			<input type="text"/>
-			<button onclick="clickAdd(this)" :data-model="model">Добавить</button>
-		</div>
-		<span class="plus-btn" onclick="clickPlus(this);">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-				<path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/>
-			</svg>
-		</span>
-	</div>
-</component>
+    <component style="display: none;" id="input-block-tpl">
+        <div class="input-block">
+            <div class="input-box">
+                <input type="text" />
+                <button onclick="clickAdd(this)" :data-model="model">Добавить</button>
+            </div>
+            <span class="plus-btn" onclick="clickPlus(this);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                </svg>
+            </span>
+        </div>
+    </component>
 
-<script type="text/javascript">
+    <script type="text/javascript">
+        function clickPlus(e) {
+            $(e).hide()
+            $('.input-box', e.parentElement).fadeIn()
+        }
 
-
-	function clickPlus(e) {
-		$(e).hide()
-		$('.input-box', e.parentElement).fadeIn()
-	}
-
-	function clickAdd(e) {
-		$(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
-		const model = $(e).data('model')
-		const value = $('input', e.parentElement).val()
-		if (value) data[model].push(value)
-	}
-
+        function clickAdd(e) {
+            $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
+            const model = $(e).data('model')
+            const value = $('input', e.parentElement).val()
+            if (value) data[model].push(value)
+        }
 
 
-	const data = {
-		hasCommentsPerm: true,
-		input_comp:'',
 
-		fullname: "Акиньшина Любовь Валерьевна",
-        position: "Руководитель административно-хозяйственного отдела",
-		education: "Белгородский государственный технологический университетим. В.Г. Шухова",
-        faculty: "Экономика и управление на предприятии промышленности строительных материалов",
+        const data = {
+            hasCommentsPerm: true,
+            input_comp: '',
 
-		comments: [
-			{text: 'раз коммент', author: 'hr'},
-			{text: 'два коммент', author: 'начальник'},
-			{text: 'три коммент', author: 'ещё кто-то'},
-		],
+            fullname: "Акиньшина Любовь Валерьевна",
+            position: "Руководитель административно-хозяйственного отдела",
+            education: "Белгородский государственный технологический университет им. В.Г. Шухова",
+            faculty: "Экономика и управление на предприятии промышленности строительных материалов",
 
-		competentions: [
-			'Эксплуатация и администрирование телефонной станции AVAYA, заключение договоров с ПАО МГТС. Техническое обслуживание центра,проверка работоспособности слаботочных систем.',
-			'Avaya CM CCE CMS BCMS APC AES EMC',
-			'Asterisk',
-            'UNIX: ssh, samba, amanda, bacula, openvpn, httpd, named, sendmail, mysql, motion, ftp, mysql, firebird.',
-            'Windows: Windows 2003 Server, Active Directory, remote desktop, MsSQL.Установка, настройка оборудования voip. Установка, настройка оборудования FCD IP.',
-            'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
-		],
+            comments: [{
+                    text: 'раз коммент',
+                    author: 'hr'
+                },
+                {
+                    text: 'два коммент',
+                    author: 'начальник'
+                },
+                {
+                    text: 'три коммент',
+                    author: 'ещё кто-то'
+                },
+            ],
 
-		certifications: [
-			{year: 2020, text:'CISCO CCNA: Колледж предпринимательства 11, Свидетельство'},
-			{year: 2016, text:'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", г. Москва, Свидетельство'},
-			{year: 2012, text:'UNIX введение в администрирование: Специалист при МВТУ им.Баумана, Свидетельство'},
-            {year: 2012, text:'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x): Комптек, Телефония'},
-            {year: 2010, text:'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", Администрирование систем гражданского шифрования'},
-		]
-	}
+            competentions: [
+                'Эксплуатация и администрирование телефонной станции AVAYA, заключение договоров с ПАО МГТС. Техническое обслуживание центра,проверка работоспособности слаботочных систем.',
+                'Avaya CM CCE CMS BCMS APC AES EMC',
+                'Asterisk',
+                'UNIX: ssh, samba, amanda, bacula, openvpn, httpd, named, sendmail, mysql, motion, ftp, mysql, firebird.',
+                'Windows: Windows 2003 Server, Active Directory, remote desktop, MsSQL.Установка, настройка оборудования voip. Установка, настройка оборудования FCD IP.',
+                'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
+            ],
+
+            certifications: [{
+                    year: 2020,
+                    text: 'CISCO CCNA: Колледж предпринимательства 11, Свидетельство'
+                },
+                {
+                    year: 2016,
+                    text: 'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", г. Москва, Свидетельство'
+                },
+                {
+                    year: 2012,
+                    text: 'UNIX введение в администрирование: Специалист при МВТУ им.Баумана, Свидетельство'
+                },
+                {
+                    year: 2012,
+                    text: 'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x): Комптек, Телефония'
+                },
+                {
+                    year: 2010,
+                    text: 'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", Администрирование систем гражданского шифрования'
+                },
+            ]
+        }
 
 
-	Vue.component('input-block', {props: ['model'],	template: $('#input-block-tpl').html()})
+        Vue.component('input-block', {
+            props: ['model'],
+            template: $('#input-block-tpl').html()
+        })
 
-	const app = new Vue({el: '#app', data})
-</script>
+        const app = new Vue({
+            el: '#app',
+            data
+        })
+    </script>
 </body>
+
 </html>
