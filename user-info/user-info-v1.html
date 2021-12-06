@@ -18,6 +18,7 @@
 
         body {
             font-family: sans-serif;
+            background-color: #f2f4f3;
         }
 
         h2 {
@@ -27,16 +28,45 @@
 
         h3 {
             color: #999;
+            margin-bottom: 10px;
         }
+
+        #app {
+            display: flex;           
+            margin: 15px auto;            
+            background-color: #fff;
+            border-radius: 4px;    
+            box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a;
+
+            
+           
+            position: relative;
+            width: 1280px;
+            
+        }
+       
+
+        .one_col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .two_col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-left: 1px solid #e5e5e5;
+        }
+
+        /*====== Comments ======*/
 
         .comments {
             background: #d6e0f7;
             padding: 15px;
             min-width: 300px;
-            max-height: 100px;
-            /*margin: 0 auto;*/
-            /* margin: 30px; */
-            float: right;
+            max-height: 100px;            
+            /* float: right; */
             border-radius: 10px;
             overflow: auto;
             transition: 1s;
@@ -46,9 +76,125 @@
             color: #999;
         }
 
-        .comments.collapsed {
+        /* .comments.collapsed {
             max-height: 8px;
             overflow: hidden;
+        }        */
+
+        /*====== Header ======*/
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .header__left {
+            /* flex: 2; */
+            min-height: 15vh;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 0 20px;
+        }
+
+        .header__rigth {
+            /* flex: 1; */
+            min-height: 15vh;
+            padding: 0 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        /*====== Sections ======*/
+        
+        section {
+            margin-bottom: 20px;
+        }
+
+        .sections__left {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .sections__rigth {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /*====== Navigation ======*/
+
+        .navi-wrapper {
+            background-color: #c5e5ff;
+        }
+
+        .columns-wrapper {
+            margin: 0 auto;
+            /* width: 1000px; */
+            padding: 16px;
+            
+        }
+
+        .navi-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+            /* justify-content: space-between; */
+            height: 80px;
+        }
+
+        .navi-item_search {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-left: 500px;
+            margin-right: 30px;
+            white-space: nowrap;
+        }
+
+        /*====== Input ======*/
+
+        input {
+            border: none;
+            width: 95%;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+        input:focus-visible {
+            outline-color: #92ccfc;
+        }
+        .input-block {
+            /* height: 50px; */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .input-box {           
+            display: none;            
+        }
+        /* .input-box_visible {           
+            display: flex;            
+        } */
+
+        .input__add-item {
+            border: 1px solid #92ccfc;
+
+        }
+        /*====== Button ======*/
+
+        .addBtn,
+        .searchBtn {            
+            padding: 10px 30px;
+            background: #92ccfc;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .addBtn:hover, 
+        .searchBtn:hover {
+            background-color: #5bb2fa;
         }
 
         .plus-btn {
@@ -63,128 +209,8 @@
             fill: #3986e7;
         }
 
-        .input-block {
-            height: 50px;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-box {
-            display: none;
-        }
-
-        header {
-            display: flex;
-
-            flex-wrap: wrap;
-            justify-content: space-around;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        #app {
-            display: flex;
-            /* flex-direction: column; */
-
-        }
-
-        .one_col {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            /* flex: 2; */
-
-        }
-
-        .two_col {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            border-left: 1px solid #e5e5e5;
-            /* flex: 1; */
-        }
-
-        .header__left {
-            /* flex: 2; */
-            min-height: 20vh;
-            border-bottom: 1px solid #e5e5e5;
-            padding: 0 20px;
-        }
-
-        .header__rigth {
-            /* flex: 1; */
-            min-height: 15vh;
-            padding: 0 20px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .sections__left {
-            flex: 2;
-            padding: 20px;
-        }
-
-        .sections__rigth {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .navi-wrapper {
-            background-color: #ccc;
-        }
-
-        .columns-wrapper {
-            margin: 0 auto;
-            /* width: 1000px; */
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-
-        .navi-menu {
-            position: relative;
-            display: flex;
-            align-items: center;
-            height: 80px;
-        }
-
-        .navi-item_search {
-            display: flex;
-            align-items: center;
-            position: relative;
-            margin-left: 300px;
-            white-space: nowrap;
-        }
-
-        input {
-            border: none;
-            width: 95%;
-            padding: 10px;
-            font-size: 1.2rem;
-        }
-
-        .addBtn,
-        .searchBtn {
-            margin: 10px 0 0 0;
-            padding: 10px 30px;
-            background: #ebeaea;
-            color: #555;
-            text-align: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .searchBtn:hover {
-            background-color: #929191;
-        }
-
-        .addBtn:hover {
-            background-color: #bbb;
-        }
-
-        #app {
-            margin: 0 50px;
-            padding-top: 30px;
-        }
-
+        
+        /*======== Education =========*/
         .education {
             font-size: 1.3rem;
             font-weight: 700;
@@ -194,40 +220,116 @@
             font-size: 1.1rem;
             padding: 10px;
         }
+ 
+        /*======= Competencies and Qualifications  ========*/
 
-        section {
-            margin-bottom: 20px;
-        }
-
-        .user-info {}
-
-        .list {}
-
+        .competencies,
         .qualifications {
-            display: flex;
+            margin-bottom: 15px;
             font-size: 1.1rem;
             list-style: none;
-            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;            
         }
-
-        .qualifications-year {
+        
+        .competencies__icon,
+        .qualifications__year {
+            padding: 0 20px;            
+            align-self: center;
+        }
+        .qualifications__year {
             font-size: 0.9rem;
+        }
+        .competencies__text,
+        .qualifications__text  {            
+            flex: 3;
+            white-space: normal;
+        }
+        .qualifications__text  {            
+            /* display: flex;
+            flex-direction: column; */
+        }
+        .qualifications__course  {            
             font-weight: 700;
-            padding-right: 30px;
+            padding-right: 15px;
+        }
+        
+        .competencies__icon-del,
+        .qualifications__icon-del {
+            color: #fff;
+            padding: 0 20px;            
+            align-self: center;
+        }
+        .competencies__text:hover~.competencies__icon-del,
+        .qualifications__text:hover~.qualifications__icon-del {
+            color: #999;
         }
 
-        .competencies {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+        .competencies__text:hover,
+        .competencies__icon-del:hover,
+        .qualifications__text:hover,
+        .qualifications__icon-del:hover {
+            color: #999;            
         }
+        
 
+        /*======= Contacts =======*/
         .contacts {
             margin-bottom: 10px;
         }
+        .contacts__title {
+            color: #999;
+            font-size: 0.9rem;
+        }
 
+        /*======= Birthday =======*/
         .birthday {
-            font-size: 1.1rem;
-            margin: 15px 0;
+            /* font-size: 1.1rem; */
+            margin-top: 15px;            
+        }
+        .birthday__title {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .information__title {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .new__item {
+            display: flex;
+        }
+        /*============= Media ============*/
+
+        /* @media (max-width: 1680px) {
+            #app {
+                width: 1536px;
+            }
+            
+        } */
+
+        @media (max-width: 1280px) {
+            #app {
+                 width: 1136px; 
+            }
+            .navi-item_search {
+                margin-left: 300px;
+            }
+            
+        }
+
+        @media (max-width: 1024px) {
+            #app {
+                width: 944px;
+            }
+            .columns-wrapper {
+                flex-direction: column;
+            }
+            .navi-item_search {
+                margin-left: 100px;
+            }
         }
     </style>
 </head>
@@ -251,12 +353,6 @@
     </div>
 
 
-
-
-
-
-
-
     <content id="app" class="columns-wrapper">
 
         <div class="one_col">
@@ -264,7 +360,7 @@
                 <div class="user-info">
                     <h1>{{fullname}}</h1>
                     <h3>{{position}}</h3>
-                    <div class="birthday">Дата рождения: 01 декабря 1974 года</div>
+                    <div class="birthday"><span class="birthday__title">Дата рождения:</span> 01 декабря 1974 года</div>
                 </div>
             </div>
             <div class="sections__left">
@@ -276,9 +372,11 @@
                 </section>
                 <section>
                     <h2>Навыки</h2>
-                    <ol class="list">
+                    <ol class="list">                            
                         <li v-for="e in competentions" class="competencies">
-                            {{ e }}
+                            <div class="competencies__icon">-</div>
+                            <div class="competencies__text">{{ e }}</div>                                
+                            <div class="competencies__icon-del">X</div>
                         </li>
                     </ol>
                     <input-block model="competentions" />
@@ -287,11 +385,17 @@
                     <h2>Повышение квалификации, курсы</h2>
                     <ul class="list">
                         <li v-for="e in certifications" class="qualifications">
-                            <div class="qualifications-year">{{e.year}}</div>
-                            <div>{{ e.text }}</div>
+                            <div class="qualifications__year">{{e.year}}</div>
+                            <div class="qualifications__text">
+                                <span class="qualifications__course">{{ e.learning_center }}</span>
+                                <span>{{ e.city }}</span><br>
+                                <span>{{ e.course }}.&nbsp;</span>                                
+                                <span>{{ e.diploma }}.</span>                                
+                            </div>
+                            <div class="qualifications__icon-del">X</div>
                         </li>
                     </ul>
-                    <input-block model="certifications" />
+                    <input-block model="certifications" class="qualifications__input"/>
                 </section>
             </div>
 
@@ -299,25 +403,25 @@
         <div class="two_col">
             <div class="header__rigth">
 
-                <div class="user-contacts">
-                    <div class="contacts">Служебный телефон: 1111</div>
-                    <div class="contacts">Моб. телефон: +7 (111) 111-11-11</div>
-                    <div class="contacts">E-mail:&nbsp;<a href="mailto:vtc@vtc-service.ru"
+                <div class="user__contacts">
+                    <div class="contacts"><span class="contacts__title">Служебный телефон:</span> 1111</div>
+                    <div class="contacts"><span class="contacts__title">Моб. телефон:</span> +7 (111) 111-11-11</div>
+                    <div class="contacts"><span class="contacts__title">E-mail:</span>&nbsp;<a href="mailto:vtc@vtc-service.ru"
                             target="_blank">vtc@vtc-service.ru</a></div>
-                    <div class="contacts">Город: Москва</div>
-                    <div class="contacts">Начальник: Иванов Иван Иванович</div>
+                    <div class="contacts"><span class="contacts__title">Город:</span> Москва</div>
+                    <div class="contacts"><span class="contacts__title">Начальник:</span> Иванов Иван Иванович</div>
                 </div>
 
 
             </div>
 
             <div class="sections__rigth">
-                <section>
+                <section class="additional__information">
                     <h3>Дополнительная информация</h3>
-                    <div>
-                        <!--🚗&nbsp;-->Личный автомобиль: Да
+                    <div><span class="information__title">
+                        <!--🚗&nbsp;-->Личный автомобиль:</span> Да
                     </div>
-                    <div>Права категории: B</div>
+                    <div><span class="information__title">Права категории:</span> B</div>
                 </section>
                 <h3>Комментарии</h3>
                 <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
@@ -325,6 +429,7 @@
                         {{ e.text }}
                         <small>{{ e.author }}</small>
                     </div>
+                    <input-block model="comments" class="comments__input"/>
                 </section>
 
 
@@ -335,8 +440,10 @@
     <component style="display: none;" id="input-block-tpl">
         <div class="input-block">
             <div class="input-box">
-                <input type="text" />
-                <button onclick="clickAdd(this)" :data-model="model">Добавить</button>
+                <div class="new__item">
+                    <input type="text" class="input__add-item"/>
+                    <span class="addBtn" onclick="clickAdd(this)" :data-model="model">Добавить</span>
+                </div>
             </div>
             <span class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -396,24 +503,47 @@
 
             certifications: [{
                     year: 2020,
-                    text: 'CISCO CCNA: Колледж предпринимательства 11, Свидетельство'
+                    learning_center: 'Колледж предпринимательства',
+                    course: 'CISCO CCNA',
+                    diploma: 'Свидетельство',
+                    city: 'г. Москва'
                 },
                 {
-                    year: 2016,
-                    text: 'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", г. Москва, Свидетельство'
+                    year: 2016,                    
+                    learning_center: 'Учебный центр ОАО"Инфотекс"',
+                    course: 'Vipnet админстрирование',
+                    diploma: 'Свидетельство',
+                    city: 'г. Москва'
                 },
                 {
                     year: 2012,
-                    text: 'UNIX введение в администрирование: Специалист при МВТУ им.Баумана, Свидетельство'
+                    learning_center: 'Специалист при МВТУ им.Баумана',
+                    course: 'UNIX введение в администрирование',
+                    diploma: 'Свидетельство',
+                    city: 'г. Москва'
                 },
                 {
                     year: 2012,
-                    text: 'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x): Комптек, Телефония'
+                    learning_center: 'Комптек',
+                    course: 'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x)',
+                    diploma: 'Свидетельство',
+                    city: 'г. Санкт-Петербург'
                 },
                 {
                     year: 2010,
-                    text: 'Vipnet админстрирование: Учебный центр ОАО"Инфотекс", Администрирование систем гражданского шифрования'
+                    text: 'Vipnet админстрирование: , ',
+                    learning_center: 'Учебный центр ОАО"Инфотекс-Технолоджи"',
+                    course: 'Администрирование систем гражданского шифрования',
+                    diploma: 'Свидетельство',
+                    city: 'г. Новосибирск'
                 },
+            ], 
+
+            comments: [
+                {
+                    author: 'hr',
+                    text: 'Очень сильный кандидат'
+                }
             ]
         }
 
