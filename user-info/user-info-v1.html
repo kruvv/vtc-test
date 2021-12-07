@@ -161,23 +161,34 @@
         input:focus-visible {
             outline-color: #92ccfc;
         }
-        .input-block {
-            /* height: 50px; */
+        .input-block, 
+        .input-form-block {            
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
         }
+       
 
         .input-box {           
             display: none;            
         }
-        /* .input-box_visible {           
-            display: flex;            
-        } */
-
-        .input__add-item {
+        
+        .form__title-item {
+            /* float: left; */
+            display: flex;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+        .form__input-year,
+        .form__input-course,
+        .form__input-learning_center {
             border: 1px solid #92ccfc;
+            border-radius: 5px;
+        }
 
+        .sss {
+            float: left;
+            margin: 0 5px;
         }
         /*====== Button ======*/
 
@@ -198,7 +209,7 @@
         }
 
         .plus-btn {
-            cursor: pointer;
+            cursor: pointer;            
         }
 
         .plus-btn path {
@@ -226,11 +237,10 @@
         .competencies,
         .qualifications {
             margin-bottom: 15px;
-            font-size: 1.1rem;
-            list-style: none;
+            font-size: 1.1rem;            
             display: flex;
             justify-content: space-between;
-            cursor: pointer;            
+            /* cursor: pointer;             */
         }
         
         .competencies__icon,
@@ -244,7 +254,8 @@
         .competencies__text,
         .qualifications__text  {            
             flex: 3;
-            white-space: normal;
+            max-width: 760px;            
+            word-wrap: break-word;
         }
         .qualifications__text  {            
             /* display: flex;
@@ -261,19 +272,22 @@
             padding: 0 20px;            
             align-self: center;
         }
+        .competencies__text:hover,
+        .qualifications__text:hover, 
         .competencies__text:hover~.competencies__icon-del,
         .qualifications__text:hover~.qualifications__icon-del {
-            color: #999;
+            color: #777575;
+            transition: 0.3s;   
         }
-
-        .competencies__text:hover,
-        .competencies__icon-del:hover,
-        .qualifications__text:hover,
+       
+        .competencies__icon-del:hover,        
         .qualifications__icon-del:hover {
-            color: #999;            
+            color: #777575;            
+            transition: 0.3s;   
+            cursor: pointer;                
         }
         
-
+        
         /*======= Contacts =======*/
         .contacts {
             margin-bottom: 10px;
@@ -300,6 +314,15 @@
 
         .new__item {
             display: flex;
+        }
+        .form__item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comments__input {
+            /* width: 270px; */
+            /* height: 65px; */
         }
         /*============= Media ============*/
 
@@ -330,6 +353,7 @@
             .navi-item_search {
                 margin-left: 100px;
             }
+           
         }
     </style>
 </head>
@@ -372,30 +396,30 @@
                 </section>
                 <section>
                     <h2>Навыки</h2>
-                    <ol class="list">                            
-                        <li v-for="e in competentions" class="competencies">
+                                              
+                        <div v-for="e in competentions" class="competencies">
                             <div class="competencies__icon">-</div>
                             <div class="competencies__text">{{ e }}</div>                                
-                            <div class="competencies__icon-del">X</div>
-                        </li>
-                    </ol>
+                            <div class="competencies__icon-del">x</div>
+                        </div>
+                    
                     <input-block model="competentions" />
                 </section>
                 <section>
                     <h2>Повышение квалификации, курсы</h2>
-                    <ul class="list">
-                        <li v-for="e in certifications" class="qualifications">
+                    
+                        <div v-for="e in qualifications" class="qualifications">
                             <div class="qualifications__year">{{e.year}}</div>
                             <div class="qualifications__text">
                                 <span class="qualifications__course">{{ e.learning_center }}</span>
-                                <span>{{ e.city }}</span><br>
-                                <span>{{ e.course }}.&nbsp;</span>                                
-                                <span>{{ e.diploma }}.</span>                                
+                                <!-- <span>{{ e.city }}</span><br> -->
+                                <span>{{ e.course }}&nbsp;</span>                                
+                                <!-- <span>{{ e.diploma }}.</span>                                 -->
                             </div>
-                            <div class="qualifications__icon-del">X</div>
-                        </li>
-                    </ul>
-                    <input-block model="certifications" class="qualifications__input"/>
+                            <div class="qualifications__icon-del">x</div>
+                        </div>
+                    
+                    <input-form-block model="qualifications" class="qualifications__input"/>
                 </section>
             </div>
 
@@ -425,11 +449,12 @@
                 </section>
                 <h3>Комментарии</h3>
                 <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
-                    <div v-for="e in comments">
+                    <div v-for="e in comments.comment">
                         {{ e.text }}
                         <small>{{ e.author }}</small>
                     </div>
-                    <input-block model="comments" class="comments__input"/>
+                    <input-block model="comments" class="comments__input" data-cols="20" data-rows="3"/>
+                    debugger
                 </section>
 
 
@@ -440,10 +465,43 @@
     <component style="display: none;" id="input-block-tpl">
         <div class="input-block">
             <div class="input-box">
-                <div class="new__item">
-                    <input type="text" class="input__add-item"/>
-                    <span class="addBtn" onclick="clickAdd(this)" :data-model="model">Добавить</span>
+                <!-- <div class="new__item"> -->
+                    <!-- <input type="text" class="form__input/> -->
+                    <textarea 
+                        name=""
+                        class="sss" 
+                        id="textArea" 
+                        cols="20"
+                        rows="3" 
+                        autofocus 
+                        placeholder="Введите текст..." 
+                        wrap="hard">
+                    </textarea>
+                    <span class="addBtn sss" onclick="clickAdd(this)" :data-model="model">+</span>
+                <!-- </div> -->
+            </div>
+            <span class="plus-btn" onclick="clickPlus(this);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                </svg>
+            </span>
+        </div>
+    </component>
+
+    <!-- Form qualifications -->
+    <component style="display: none;" id="input-form-tpl">
+        <div class="input-form-block">
+            <div class="input-box">
+                <div class="form__item">                    
+                    <div class="form__title-item">Учебное заведение:<input type="text" class="form__input-learning_center" /></div>
+                    <!-- <div class="form__title-item">Место проведения:<input type="text" class="form__input" /></div> -->
+                    <div class="form__title-item">Специализация:<input type="text" class="form__input-course" /></div>
+                    <!-- <div class="form__title-item">Подтверждающий документ:<input type="text" class="form__input" /></div> -->
+                    <div class="form__title-item">Год окончания:<input type="text" class="form__input-year" /></div>                    
+                    <span class="addBtn sss" onclick="clickAddForm(this)" :data-model="model">Добавить</span>
                 </div>
+                
             </div>
             <span class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -457,16 +515,30 @@
     <script type="text/javascript">
         function clickPlus(e) {
             $(e).hide()
-            $('.input-box', e.parentElement).fadeIn()
+            $('.input-box', e.parentElement).fadeIn()            
         }
 
         function clickAdd(e) {
             $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
             const model = $(e).data('model')
-            const value = $('input', e.parentElement).val()
+            const value = $('textarea', e.parentElement).val()
             if (value) data[model].push(value)
         }
 
+        function clickAddForm(e) {
+            $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
+            const model = $(e).data('model')            
+            const year = $('.form__input-year', e.parentElement).val()
+            const learning_center = $('.form__input-learning_center', e.parentElement).val()
+            const course = $('.form__input-course', e.parentElement).val()
+            let item = {
+                year,
+                learning_center,
+                course
+            }
+            if (item) data[model].push(item)
+            
+        }
 
 
         const data = {
@@ -501,7 +573,7 @@
                 'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
             ],
 
-            certifications: [{
+            qualifications: [{
                     year: 2020,
                     learning_center: 'Колледж предпринимательства',
                     course: 'CISCO CCNA',
@@ -539,18 +611,32 @@
                 },
             ], 
 
-            comments: [
-                {
-                    author: 'hr',
-                    text: 'Очень сильный кандидат'
+            comments: {
+                comment: [
+                    {
+                        author: 'hr',
+                        text: 'Очень сильный кандидат'
+                    }
+                ],
+                input_size: {
+                    cols: 30,
+                    rows: 3
                 }
-            ]
+            },
+
+            
+
         }
 
 
         Vue.component('input-block', {
             props: ['model'],
             template: $('#input-block-tpl').html()
+        })
+
+        Vue.component('input-form-block', {
+            props: ['model'],
+            template: $('#input-form-tpl').html()
         })
 
         const app = new Vue({
