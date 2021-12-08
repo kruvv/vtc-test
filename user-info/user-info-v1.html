@@ -64,12 +64,13 @@
         .comments {
             background: #d6e0f7;
             padding: 15px;
-            min-width: 300px;
-            max-height: 100px;            
-            /* float: right; */
+            width: 350px;
+            /* max-height: 100px;             */
+            /* float: left; */
             border-radius: 10px;
             overflow: auto;
             transition: 1s;
+            word-wrap: break-word;
         }
 
         .comments small {
@@ -123,7 +124,7 @@
         /*====== Navigation ======*/
 
         .navi-wrapper {
-            background-color: #c5e5ff;
+            background-color: #cbe6fc;
         }
 
         .columns-wrapper {
@@ -151,7 +152,7 @@
         }
 
         /*====== Input ======*/
-
+        
         input {
             border: none;
             width: 95%;
@@ -170,45 +171,100 @@
        
 
         .input-box {           
-            display: none;            
+            display: none;      
+            
         }
-        
-        .form__title-item {
-            /* float: left; */
-            display: flex;
-            margin-bottom: 5px;
+        .boxSize {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        /*======== Form ============*/
+        .frame {
+            box-shadow: 0 0 6px 4px rgba(146, 204, 252, 0.5);             
+            border-radius: 5px;  
+            padding: 25px; 
+        }
+               
+        .form__title-item {            
+            display: flex;            
             flex-wrap: wrap;
         }
+
+        textarea,
         .form__input-year,
         .form__input-course,
         .form__input-learning_center {
             border: 1px solid #92ccfc;
             border-radius: 5px;
+            padding: 5px;
+        }
+        .year {
+            flex: 1;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .learning_center {
+            flex: 3;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .course {
+            flex: 3;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .form__item {
+            display: flex;           
+           
         }
 
         .sss {
             float: left;
-            margin: 0 5px;
+            margin-right: 15px;
+            width: 90%; /* Ширина поля в процентах */
+            height: 60px; /* Высота поля в пикселах */
+            resize: none; /* Запрещаем изменять размер */
+           
         }
         /*====== Button ======*/
-
+        
+        .formBtn,
         .addBtn,
-        .searchBtn {            
-            padding: 10px 30px;
-            background: #92ccfc;
-            color: rgb(255, 255, 255);
-            text-align: center;
+        .searchBtn {
+            background: #8cc9fc;
+            color: rgb(255, 255, 255);           
             font-size: 1.2rem;
             cursor: pointer;
             transition: 0.3s;
         }
+        .addBtn {
+           padding: 10px 15px;
+           margin-left: 0;
+           margin-right: auto; 
+           margin-top: 10px;
+           float: left; 
+           border-radius: 50%;    
+        }
+        .searchBtn {  
+            padding: 10px 30px;
+        }
 
+        .formBtn {
+            margin-right: 20px;
+            float: right;
+            margin-top: 20px;
+            padding: 10px 30px;
+        }
+
+        .formBtn:hover,
         .addBtn:hover, 
         .searchBtn:hover {
             background-color: #5bb2fa;
         }
 
         .plus-btn {
+            padding-top: 10px;
             cursor: pointer;            
         }
 
@@ -254,7 +310,7 @@
         .competencies__text,
         .qualifications__text  {            
             flex: 3;
-            max-width: 760px;            
+            width: 705px;            
             word-wrap: break-word;
         }
         .qualifications__text  {            
@@ -315,10 +371,7 @@
         .new__item {
             display: flex;
         }
-        .form__item {
-            display: flex;
-            flex-direction: column;
-        }
+       
 
         .comments__input {
             /* width: 270px; */
@@ -433,7 +486,7 @@
                     <div class="contacts"><span class="contacts__title">E-mail:</span>&nbsp;<a href="mailto:vtc@vtc-service.ru"
                             target="_blank">vtc@vtc-service.ru</a></div>
                     <div class="contacts"><span class="contacts__title">Город:</span> Москва</div>
-                    <div class="contacts"><span class="contacts__title">Начальник:</span> Иванов Иван Иванович</div>
+                    <div class="contacts"><span class="contacts__title">Руководитель:</span> Иванов Иван Иванович</div>
                 </div>
 
 
@@ -449,35 +502,34 @@
                 </section>
                 <h3>Комментарии</h3>
                 <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
-                    <div v-for="e in comments.comment">
-                        {{ e.text }}
-                        <small>{{ e.author }}</small>
+                    <div v-for="e in comments">
+                        <small>{{ e.author }}&nbsp;{{ e.date }}</small>
+                        <div>&nbsp;{{ e.text }}</div>                        
                     </div>
-                    <input-block model="comments" class="comments__input" data-cols="20" data-rows="3"/>
-                    debugger
+                    <input-block model="comments" class="comments__input" />                   
                 </section>
-
-
             </div>
         </div>
     </content>
 
     <component style="display: none;" id="input-block-tpl">
         <div class="input-block">
-            <div class="input-box">
+            <div class="input-box boxSize">
                 <!-- <div class="new__item"> -->
                     <!-- <input type="text" class="form__input/> -->
                     <textarea 
                         name=""
                         class="sss" 
-                        id="textArea" 
+                        id="textArea"                      
                         cols="20"
-                        rows="3" 
+                        rows="3"  
                         autofocus 
                         placeholder="Введите текст..." 
-                        wrap="hard">
+                        wrap="hard"
+                        
+                        >
                     </textarea>
-                    <span class="addBtn sss" onclick="clickAdd(this)" :data-model="model">+</span>
+                    <div class="addBtn" onclick="clickAdd(this)" :data-model="model">+</div>
                 <!-- </div> -->
             </div>
             <span class="plus-btn" onclick="clickPlus(this);">
@@ -492,16 +544,16 @@
     <!-- Form qualifications -->
     <component style="display: none;" id="input-form-tpl">
         <div class="input-form-block">
-            <div class="input-box">
-                <div class="form__item">                    
-                    <div class="form__title-item">Учебное заведение:<input type="text" class="form__input-learning_center" /></div>
+            <div class="input-box frame">
+                <form class="form__item">     
+                    <div class="form__title-item year">Год окончания:<input type="text" class="form__input-year" /></div>                
+                    <div class="form__title-item learning_center">Учебное заведение:<input type="text" class="form__input-learning_center" /></div>
                     <!-- <div class="form__title-item">Место проведения:<input type="text" class="form__input" /></div> -->
-                    <div class="form__title-item">Специализация:<input type="text" class="form__input-course" /></div>
-                    <!-- <div class="form__title-item">Подтверждающий документ:<input type="text" class="form__input" /></div> -->
-                    <div class="form__title-item">Год окончания:<input type="text" class="form__input-year" /></div>                    
-                    <span class="addBtn sss" onclick="clickAddForm(this)" :data-model="model">Добавить</span>
-                </div>
-                
+                    <div class="form__title-item course">Специализация:<input type="text" class="form__input-course" /></div>
+                    <!-- <div class="form__title-item">Подтверждающий документ:<input type="text" class="form__input" /></div> -->                                    
+                    
+                </form>
+                <div class="formBtn" onclick="clickAddForm(this)" :data-model="model">Добавить</div>
             </div>
             <span class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -515,14 +567,23 @@
     <script type="text/javascript">
         function clickPlus(e) {
             $(e).hide()
-            $('.input-box', e.parentElement).fadeIn()            
+            $('.input-box', e.parentElement).fadeIn()    
         }
 
         function clickAdd(e) {
             $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
             const model = $(e).data('model')
             const value = $('textarea', e.parentElement).val()
-            if (value) data[model].push(value)
+            if('comments' === model) {                
+                let item = {
+                    author:   'hr',
+                    text: value,
+                    date: new Date().toLocaleDateString()
+                }
+                if (item) data[model].push(item)
+            } else if (value) data[model].push(value)
+
+           
         }
 
         function clickAddForm(e) {
@@ -537,7 +598,11 @@
                 course
             }
             if (item) data[model].push(item)
-            
+            resetForm(e)
+        }
+
+        function resetForm(form) {
+            $('.form__item').trigger('reset')
         }
 
 
@@ -611,20 +676,18 @@
                 },
             ], 
 
-            comments: {
-                comment: [
-                    {
-                        author: 'hr',
-                        text: 'Очень сильный кандидат'
-                    }
-                ],
-                input_size: {
-                    cols: 30,
-                    rows: 3
+           
+            comments: [
+                {
+                    author: 'hr',
+                    text: 'Очень сильный кандидат'
+                },
+                {
+                    author: 'Руководитель',
+                    text: 'Высокие знания в  поиске и устранении аварий на сети ШПД'
                 }
-            },
-
-            
+            ],
+           
 
         }
 
