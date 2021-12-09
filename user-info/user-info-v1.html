@@ -36,10 +36,7 @@
             margin: 15px auto;            
             background-color: #fff;
             border-radius: 4px;    
-            box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a;
-
-            
-           
+            box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a; 
             position: relative;
             width: 1280px;
             
@@ -125,6 +122,7 @@
 
         .navi-wrapper {
             background-color: #cbe6fc;
+            width: 100%;
         }
 
         .columns-wrapper {
@@ -132,10 +130,11 @@
             /* width: 1000px; */
             padding: 16px;
             
+            
         }
 
         .navi-menu {
-            position: relative;
+            /* position: relative; */
             display: flex;
             align-items: center;
             /* justify-content: space-between; */
@@ -219,13 +218,12 @@
            
         }
 
-        .sss {
+        .custom {
             float: left;
             margin-right: 15px;
-            width: 90%; /* Ширина поля в процентах */
-            height: 60px; /* Высота поля в пикселах */
-            resize: none; /* Запрещаем изменять размер */
-           
+            width: 90%; 
+            height: 60px; 
+            resize: none; 
         }
         /*====== Button ======*/
         
@@ -295,8 +293,7 @@
             margin-bottom: 15px;
             font-size: 1.1rem;            
             display: flex;
-            justify-content: space-between;
-            /* cursor: pointer;             */
+            justify-content: space-between;           
         }
         
         .competencies__icon,
@@ -314,8 +311,7 @@
             word-wrap: break-word;
         }
         .qualifications__text  {            
-            /* display: flex;
-            flex-direction: column; */
+           
         }
         .qualifications__course  {            
             font-weight: 700;
@@ -374,28 +370,10 @@
        
 
         .comments__input {
-            /* width: 270px; */
-            /* height: 65px; */
+            
         }
         /*============= Media ============*/
-
-        /* @media (max-width: 1680px) {
-            #app {
-                width: 1536px;
-            }
-            
-        } */
-
-        @media (max-width: 1280px) {
-            #app {
-                 width: 1136px; 
-            }
-            .navi-item_search {
-                margin-left: 300px;
-            }
-            
-        }
-
+  
         @media (max-width: 1024px) {
             #app {
                 width: 944px;
@@ -405,7 +383,36 @@
             }
             .navi-item_search {
                 margin-left: 100px;
+            } 
+            .comments {
+                width: 100%;
+            }             
+        }
+
+        @media (max-width: 767px) {
+            #app {
+                width: 700px;
             }
+            .navi-wrapper {
+                /* flex-direction: column; */
+                height: 180px;
+            }
+            .navi-menu {
+                flex-direction: column;
+                align-self: center;
+            }   
+            .navi-item_search {
+                margin: 0;
+            }  
+            .comments {
+                width: 100%;
+            }      
+        }
+        @media (max-width: 500px) {
+            #app {
+                min-width: 320px;
+            }
+            
            
         }
     </style>
@@ -481,12 +488,13 @@
             <div class="header__rigth">
 
                 <div class="user__contacts">
-                    <div class="contacts"><span class="contacts__title">Служебный телефон:</span> 1111</div>
-                    <div class="contacts"><span class="contacts__title">Моб. телефон:</span> +7 (111) 111-11-11</div>
-                    <div class="contacts"><span class="contacts__title">E-mail:</span>&nbsp;<a href="mailto:vtc@vtc-service.ru"
-                            target="_blank">vtc@vtc-service.ru</a></div>
-                    <div class="contacts"><span class="contacts__title">Город:</span> Москва</div>
-                    <div class="contacts"><span class="contacts__title">Руководитель:</span> Иванов Иван Иванович</div>
+                    <div class="contacts"><span class="contacts__title">Служебный телефон:</span>&nbsp;1111</div>
+                    <div class="contacts"><span class="contacts__title">Моб. телефон:</span>&nbsp;+7 (111) 111-11-11</div>
+                    <div class="contacts"><span class="contacts__title">E-mail:</span>&nbsp;
+                        <a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a>
+                    </div>
+                    <div class="contacts"><span class="contacts__title">Город:</span>&nbsp;Москва</div>
+                    <div class="contacts"><span class="contacts__title">Руководитель:</span>&nbsp;Иванов Иван Иванович</div>
                 </div>
 
 
@@ -514,23 +522,20 @@
 
     <component style="display: none;" id="input-block-tpl">
         <div class="input-block">
-            <div class="input-box boxSize">
-                <!-- <div class="new__item"> -->
-                    <!-- <input type="text" class="form__input/> -->
+            <div class="input-box boxSize">                
                     <textarea 
                         name=""
-                        class="sss" 
+                        class="custom" 
                         id="textArea"                      
                         cols="20"
                         rows="3"  
                         autofocus 
                         placeholder="Введите текст..." 
-                        wrap="hard"
-                        
+                        wrap="hard"     
                         >
                     </textarea>
                     <div class="addBtn" onclick="clickAdd(this)" :data-model="model">+</div>
-                <!-- </div> -->
+                
             </div>
             <span class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -547,11 +552,8 @@
             <div class="input-box frame">
                 <form class="form__item">     
                     <div class="form__title-item year">Год окончания:<input type="text" class="form__input-year" /></div>                
-                    <div class="form__title-item learning_center">Учебное заведение:<input type="text" class="form__input-learning_center" /></div>
-                    <!-- <div class="form__title-item">Место проведения:<input type="text" class="form__input" /></div> -->
-                    <div class="form__title-item course">Специализация:<input type="text" class="form__input-course" /></div>
-                    <!-- <div class="form__title-item">Подтверждающий документ:<input type="text" class="form__input" /></div> -->                                    
-                    
+                    <div class="form__title-item learning_center">Учебное заведение:<input type="text" class="form__input-learning_center" /></div>                    
+                    <div class="form__title-item course">Специализация:<input type="text" class="form__input-course" /></div>                    
                 </form>
                 <div class="formBtn" onclick="clickAddForm(this)" :data-model="model">Добавить</div>
             </div>
