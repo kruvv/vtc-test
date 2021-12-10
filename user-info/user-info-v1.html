@@ -26,7 +26,7 @@
             margin-bottom: 10px;
         }
 
-        h3 {
+        h3, h4 {
             color: #999;
             margin-bottom: 10px;
         }
@@ -359,6 +359,10 @@
             font-size: 0.9rem;
         }
 
+        .age {
+            padding-left: 25px;
+        }
+
         .information__title {
             color: #999;
             font-size: 0.9rem;
@@ -444,7 +448,12 @@
                 <div class="user-info">
                     <h1>{{fullname}}</h1>
                     <h3>{{position}}</h3>
-                    <div class="birthday"><span class="birthday__title">Дата рождения:</span> 01 декабря 1974 года</div>
+                    <h4>{{department}}</h4>
+                    <div class="birthday">
+                        <span class="birthday__title">Дата рождения:</span>
+                         01 декабря 1974 года
+                        <span class="age">47 лет.</span>
+                    </div>
                 </div>
             </div>
             <div class="sections__left">
@@ -611,7 +620,8 @@
         const data = {
             hasCommentsPerm: true,
             input_comp: '',
-
+            age: 47,
+            department: "Департамент информационных технологий",
             fullname: "Акиньшина Любовь Валерьевна",
             position: "Руководитель административно-хозяйственного отдела",
             education: "Белгородский государственный технологический университет им. В.Г. Шухова",

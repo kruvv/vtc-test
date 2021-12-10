@@ -11,178 +11,254 @@
     *,
     *::before,
     *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     body {
       font-family: sans-serif;
       background-color: #f2f4f3;
-    }
-    #app {
-      
-    }
+    }    
     .main {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 20px auto;
       max-width: 1200px;
-          /* width: 1200px; */
-        
-        }
+    }
+
     /*========= Card ===========*/
     
-    .cards {   
-
+    .cards { 
       flex: 1;
-      /* max-width: 1200px; */
     }
-    .items {
+
+    .card {
       flex: 1;
       background-color: #fafafa;
       border-radius: 4px;    
       box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a; 
       margin-bottom: 10px;
-      padding: 15px 10px;
+      padding: 15px 20px;
       cursor: pointer;
     }
-    .card__item:hover {
-      color: rgb(94, 93, 93);
+
+    .card-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
     }
-    .age {
-      font-size: 0.8rem;
-      float: right;
-    }  
+
+    .card:hover {
+      color: rgb(107, 106, 106);
+    }   
+
     .text {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }    
     .city {
       font-size: 0.8rem;
+      color: #999;
+      text-align: end;
+      margin-right: 20px;
     }
+
     .qualification {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
+
     .fullname {
       font-size: 0.9rem;
-      /* float: right; */
-      margin-right: 15px;
-
+      text-align: end;
+      margin-right: 20px;      
+      color: #999;
+      
     }
     
     .item {
       margin-bottom: 15px;
     }
 
+    
+    /*====== Navigation ======*/
 
-    .result {
-      flex: 1;
-      /* align-self: stretch; *+/
-      /* justify-content: center; */
-      /* max-width: 1200px; */
+    .navi-wrapper {    
+      position: fixed;   
+      background-color: #cbe6fc;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .columns-wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 16px;            
+    }
+
+    .search {
+      display: flex;
+      border-radius: 5px;
+    }
+
+    .navi-menu {
+      justify-content: space-between;
+      display: flex;
+      align-items: center;
+      min-height: 80px;
+    }
+
+    .navi-search {
+      display: flex;
+    }
+
+    /*====== Input ======*/
+    
+    input {
+      border: none;
+      min-width: 300px;
+      padding: 10px;
+      font-size: 1.2rem;
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+      border-right: 1px solid rgb(219, 219, 219);
+    }
+
+    input:focus-visible {
+      outline-color: #92ccfc;
+      outline-color: #fff;
+      outline-width: 0; 
+    }
+
+    /*======= Result and Region =======*/
+
+    .region {
+      border-style: none;
+      min-width: 100px;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #fff;
+        
+    }
+    
+    .result {      
+      align-self: stretch;
       background-color: #fafafa;
       border-radius: 4px;    
       box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a; 
+      margin-top: 120px;
       margin-bottom: 15px;
-      padding: 15px 10px;
+      padding: 10px 20px;
     }
-     /*====== Navigation ======*/
 
-     .navi-wrapper {
-       
-            background-color: #cbe6fc;
+    .result__sort:focus-visible,
+    .region:focus-visible {
+      outline-color: #fff; 
+      outline-width: 0;  
+    }
+
+    .result__sort:hover,
+    .region:hover {
+      background-color: #f2f4f3;
+    }
+
+    .result__quantity {
+      border-bottom: 1px solid rgb(219, 219, 219);
+      padding: 10px 0;
+    }
+
+    option {
+      border-style: none;
+      background-color: #fff;          
+    }
+
+    .result__sort {
+      border-style: none;
+      width: 150px;
+      padding: 10px;         
+      background-color: #fafafa;
+    }
+      
+    label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #999;
+    }
+
+    /*====== Button ======*/       
+    
+    .searchBtn {
+      color: #8cc9fc;
+      background: rgb(255, 255, 255);           
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+      border-left: 1px solid rgb(219, 219, 219);
+    }
+
+    .searchBtn {  
+      padding: 10px 30px;
+    }
+
+    .searchBtn:hover {
+      background-color: #5bb2fa;
+      color: #fff;
+    }
+    
+    mark {
+      background-color: rgb(240, 241, 123);
+    }
+    
+
+    /*======== Media ========*/
+
+    @media (max-width: 1024px) {
+      .main {
+          margin: 0 20px;          
         }
+      .result {
+          margin-top: 140px;
+      }
+    }
 
+    @media (max-width: 992px) {
+        .result {
+            margin-top: 180px;
+        }
         .columns-wrapper {
-            margin: 0 auto;
-            /* width: 1000px; */
-            padding: 16px;
-            
-        }
-
-        .search {
-          display: flex;
-          border-radius: 5px;
-        }
-        .navi-menu {
-            position: relative;
-            display: flex;
-            align-items: center;
-            /* justify-content: space-between; */
-            height: 80px;
-        }
-
-        .navi-item_search {
-            display: flex;
-            align-items: center;           
-            margin-left: 500px;
-            margin-right: 30px;
-            white-space: nowrap;
-        }
-         /*====== Input ======*/
-        
-         input {
-            border: none;
-            width: 500px;
-            padding: 10px;
-            font-size: 1.2rem;
-            border-bottom-left-radius: 5px;
-            border-top-left-radius: 5px;
-            border-right: 1px solid rgb(219, 219, 219);
-        }
-        input:focus-visible {
-            outline-color: #92ccfc;
-        }
-
-        .region {
-            border: none;
-            width: 25%;
-            padding: 10px;
-            font-size: 1.2rem;
-            background-color: #fff;
-            
-        }
-        .region:focus-visible {
-          outline-color: #fff;
-         
-        }
-
-        /*====== Button ======*/       
-        
-        .searchBtn {
-            color: #8cc9fc;
-            background: rgb(255, 255, 255);           
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.3s;
-            border-bottom-right-radius: 5px;
-            border-top-right-radius: 5px;
-            border-left: 1px solid rgb(219, 219, 219);
-        }
-        .searchBtn {  
-            padding: 10px 30px;
-        }
-        .searchBtn:hover {
-            background-color: #5bb2fa;
-            color: #fff;
-        }
+            flex-direction: column;
+        }        
        
-
+        .navi-menu {
+          flex-direction: column;
+        }
+        .main {
+          margin: 0 20px;          
+        }
         
-
-        /*======== Media ========*/
-        /* @media (max-width: 1024px) {
-            #app {
-                width: 944px;
-            }
-            .columns-wrapper {
-                flex-direction: column;
-            }
-            .navi-item_search {
-                margin-left: 100px;
-            }
-           
-        } */
+    }
+    @media (max-width: 500px) {
+      .search {
+          flex-direction: column;
+        }
+        .region {
+          margin: 5px 0;
+        }
+        .searchBtn {
+          text-align: center;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .result {
+            margin-top: 270px;
+        }
+        input {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+    }
 
   </style>
 </head>
@@ -191,50 +267,44 @@
 <body>
   
 <div id="app">
-  <div class="navi-wrapper">
+  <section class="navi-wrapper">
     <div class="columns-wrapper">
         <div class="navi-menu">
             <a href="" class="logo-wrapper" href="/">
                 <span class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" /></span>
             </a>
-            <div class="navi-item_search">
+            <div class="navi-search">
                 <div class="search">
-                  <input type="search" name="text-search" id="" placeholder="Может поищем что-нибудь...">
-                 
-                    <select class="region"  v-model="selected">        
-                      <option v-for="e in regions">{{ e.name }}</option>                      
-                    </select>
-                  
-                  
-                    <span class="searchBtn" onclick="searchText()">Найти</span>
+                  <input type="search" name="text-search"  placeholder="настр" />                 
+                  <select class="region"  v-model="selected">        
+                    <option v-for="e in regions">{{ e.name }}</option>                      
+                  </select>
+                  <span class="searchBtn" onclick="searchText()">Найти</span>
                 </div>
             </div>
           </div>
       </div>
-  </div>
-  <div class="main">
+  </section>
+  <section class="main">
     <div class="result">
       <div class="result__quantity">Найдено {{ count }} специалистов</div>
-      Сортировать:
-        <select class="result__sort">        
-          <option>По соответствию</option>
-          <option>По дате</option>
-          <option>По возрасту</option>
+        <label for="sort">Сортировать:</label>
+        <select id="sort" class="result__sort" v-model="selected_sort">        
+          <option class="" v-for="e in sorts">{{ e.name }}</option>          
         </select>
     
     </div>
     <div class="cards" >
-      <div class="items" v-for="el in cards">
-        <div class="city item">{{ el.city }}</div>
-        
-        <div class="qualification item">{{ el.qualification }}</div>
-        <div class="text item">{{ el.text }}</div>
-        
-        <div class="age item">{{ el.age }}</div>
+      <div class="card" v-for="el in cards">
+        <div class="card-title">
+          <div class="qualification item">{{ el.qualification }}</div>
+          <div class="city item">{{ el.city }}</div>        
+        </div>
+        <div class="text item" v-html="el.text">{{ el.text }}</div> 
         <div class="fullname item">{{ el.fullname }}</div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 
 <component style="display: none;" id="card-block-tpl">
@@ -254,12 +324,12 @@
 <script type="text/javascript">
 
   const data = {
-    count:   10,
+    count:   5,
     cards: [
       {
         age: "25 лет",
         qualification: "Инженер технической поддержки.",
-        text:" Администрирование и защита локальных сетей, серверов, рабочих станций.",
+        text:` Администрирование,  <mark>настр</mark>ойка и защита локальных сетей, серверов, рабочих станций.`,
         region: "ЦАО",
         city: "Москва",
         fullname: "Кузьмин Александр Валерьевич",             
@@ -267,15 +337,46 @@
       {
         age: "40 лет",
         qualification: "Инженер-электроник.",
-        text:" подключение и настройка оргтехники, видеонаблюдение, инсталляция и настройка ОС, ПО, монтаж и настройка сетей связи, техническая поддержка пользователей",
+        text:"Подключение и <mark>настр</mark>ойка оргтехники, видеонаблюдение, инсталляция и настройка ОС, ПО, монтаж и настройка сетей связи, техническая поддержка пользователей",
         region: "СФО",
         city: "Новосибирск", 
         fullname: "Жуков Павел Алексеевич",               
+      },
+      {
+        age: "45 лет",
+        qualification: "Системный администратор.",
+        text:" Подключение к ПК и <mark>настр</mark>ойка внешних устройств; Диагностика и проведение ремонта и профилактики ПК и оргтехники; Подключение и настройка активного сетевого оборудования, навыки монтажа СКС;",
+        region: "СЗФО",
+        city: "Санкт-Петербург", 
+        fullname: "Давыдов Вадим Александрович",               
+      },
+      {
+        age: "35 лет",
+        qualification: "Специалист информационных технологий",
+        text:" Прокладка, <mark>настр</mark>ойка и поддержание в рабочем состоянии локальной сети, сетевого и компьютерного оборудования: Cisco, D-Link, Asus, Keenetic, TP-Link. Установка на компьютеры операционные системы (Windows: XP, 7, 8, 10) и необходимые для работы программные обеспечения.",
+        region: "ЮФО",
+        city: "Краснодар", 
+        fullname: "Коваленко Антон Борисович",               
+      },
+      {
+        age: "29 лет",
+        qualification: "Специалист информационных технологий",
+        text:" Организация рабочих мест в пределах офисного здания, <mark>настр</mark>ойка и установка телефонных аппаратов, подключение принтеров, добавление пользователей на терминальном сервере и АТС Avaya. странение неисправностей связанных с неработоспособностью рабочих мест пользователей, как программных, так и механических неисправностей (диагностика и ремонт системных блоков, мониторов и комплектующих).",
+        region: "ЦАО",
+        city: "Москва", 
+        fullname: "Курзин Дмитрий Игоревич",               
       }
     ],
     selected: "РФ",
     regions: [
       {name: 'РФ'}, {name: 'ЦФО'}, {name:'СЗФО'}, {name:'ЮФО'}, {name:'СКФО'}, {name:'ПФО'}, {name:'УрФО'}, {name:'СФО'}, {name:'ДФО'}
+    ],
+    selected_sort: "По соответствию",
+    sorts: [
+    {name: "По соответствию"},
+    {name: "По дате"},
+    {name: "По возрасту"}
+
     ]
   }
 
