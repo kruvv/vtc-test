@@ -33,23 +33,22 @@
 
         #app {
             display: flex;           
-            margin: 15px auto;            
+            margin: 130px auto;            
             background-color: #fff;
             border-radius: 4px;    
-            box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a; 
-            position: relative;
-            width: 1280px;
-            
+            box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a;            
+            max-width: 1280px;
+            padding: 16px;
         }
        
 
-        .one_col {
+        .left-col {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
         }
 
-        .two_col {
+        .rigth-col {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -59,8 +58,8 @@
         /*====== Comments ======*/
 
         .comments {
-            background: #d6e0f7;
-            padding: 15px;
+            /* border: 1px ridge #999;
+            padding: 15px; */
             width: 350px;
             /* max-height: 100px;             */
             /* float: left; */
@@ -95,8 +94,7 @@
             padding: 0 20px;
         }
 
-        .header__rigth {
-            /* flex: 1; */
+        .header__rigth {           
             min-height: 15vh;
             padding: 0 20px;
             border-bottom: 1px solid #e5e5e5;
@@ -121,33 +119,31 @@
         /*====== Navigation ======*/
 
         .navi-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
             background-color: #cbe6fc;
             width: 100%;
-        }
-
+            z-index: 5;
+        }    
+        
         .columns-wrapper {
+            max-width: 1300px;
             margin: 0 auto;
-            /* width: 1000px; */
-            padding: 16px;
-            
-            
+            padding: 16px;            
         }
 
         .navi-menu {
-            /* position: relative; */
             display: flex;
             align-items: center;
-            /* justify-content: space-between; */
+            justify-content: space-between;
             height: 80px;
         }
 
-        .navi-item_search {
+        .search {
             display: flex;
             align-items: center;
-            position: relative;
-            margin-left: 500px;
-            margin-right: 30px;
-            white-space: nowrap;
+           
         }
 
         /*====== Input ======*/
@@ -161,6 +157,7 @@
         input:focus-visible {
             outline-color: #92ccfc;
         }
+
         .input-block, 
         .input-form-block {            
             display: flex;
@@ -171,19 +168,14 @@
 
         .input-box {           
             display: none;      
-            
+            width: 95%;
         }
         .boxSize {
             flex: 1;
             padding: 0 20px;
         }
 
-        /*======== Form ============*/
-        .frame {
-            box-shadow: 0 0 6px 4px rgba(146, 204, 252, 0.5);             
-            border-radius: 5px;  
-            padding: 25px; 
-        }
+        /*======== Form ============*/        
                
         .form__title-item {            
             display: flex;            
@@ -191,9 +183,9 @@
         }
 
         textarea,
-        .form__input-year,
-        .form__input-course,
-        .form__input-learning_center {
+        .input-year,
+        .input-course,
+        .input-learning_center {
             border: 1px solid #92ccfc;
             border-radius: 5px;
             padding: 5px;
@@ -213,11 +205,35 @@
             color: #999;
             font-size: 0.9rem;
         }
-        .form__item {
-            display: flex;           
+        .form {
+            display: flex;
+            flex-direction: column;           
            
         }
 
+        .second,
+        .first {
+            display: flex;
+            flex-direction: row;
+        }
+       
+
+        .label {
+            color: #999;
+            font-size: 0.9rem;            
+        }
+
+        .year-form,
+        .course,
+        .learning-center {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-bottom: 5px;
+        }
+        .year-form {
+            max-width: 15%;
+        }
         .custom {
             float: left;
             margin-right: 15px;
@@ -373,52 +389,65 @@
         }
        
 
-        .comments__input {
+        .department {
             
         }
+        .department__title {
+            color: #999;
+            font-size: 0.9rem;
+        }
+       
+       
         /*============= Media ============*/
   
         @media (max-width: 1024px) {
             #app {
-                width: 944px;
+                max-width: 944px;
+                flex-direction: column;
+                margin: 150px auto;
             }
             .columns-wrapper {
-                flex-direction: column;
+                flex-direction: column;                
+                height: 140px;
             }
-            .navi-item_search {
-                margin-left: 100px;
-            } 
+           
             .comments {
                 width: 100%;
-            }             
+            }   
+            .rigth-col {               
+                border-left: 0 solid #fffdfd;
+            }          
         }
 
         @media (max-width: 767px) {
             #app {
-                width: 700px;
+                width: 708px;
+               
+            }  
+            .columns-wrapper {
+                flex: 1;
             }
-            .navi-wrapper {
-                /* flex-direction: column; */
+
+          .navi-menu {
+              flex-direction: column;
+          }
+          .image {
+              width: 150px;
+              /* height: auto; */
+          }
+        }
+        @media (max-width: 544px) {
+            #app {
+                margin: 190px 10px;
+            }
+            .search {
+                flex-direction: column;
+            }
+            .columns-wrapper {                          
                 height: 180px;
             }
-            .navi-menu {
-                flex-direction: column;
-                align-self: center;
-            }   
-            .navi-item_search {
-                margin: 0;
-            }  
-            .comments {
-                width: 100%;
-            }      
         }
-        @media (max-width: 500px) {
-            #app {
-                min-width: 320px;
-            }
-            
-           
-        }
+       
     </style>
 </head>
 
@@ -427,28 +456,27 @@
         <div class="columns-wrapper">
             <div class="navi-menu">
                 <a href="" class="logo-wrapper" href="/">
-                    <span class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" /></span>
+                    <div class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" class="image" /></div>
                 </a>
-                <div class="navi-item_search">
-                    <div class="search">
-                        <input type="search" name="text-search" id="" placeholder="Может поищем что-нибудь...">
-                        <span class="searchBtn" onclick="searchText()">Найти</span>
-                    </div>
+                <div class="search">
+                    <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
+                    <div class="searchBtn" onclick="searchText()">Найти</div>
                 </div>
-
             </div>
         </div>
     </div>
 
 
-    <content id="app" class="columns-wrapper">
-
-        <div class="one_col">
+    <content id="app"> 
+        <div class="left-col">
             <div class="header__left">
                 <div class="user-info">
                     <h1>{{fullname}}</h1>
                     <h3>{{position}}</h3>
-                    <h4>{{department}}</h4>
+                    <div class="department">
+                        <span class="department__title">Департамент:</span>
+                        <span class="department__text">&nbsp;{{department}}</span>
+                    </div>
                     <div class="birthday">
                         <span class="birthday__title">Дата рождения:</span>
                          01 декабря 1974 года
@@ -493,7 +521,7 @@
             </div>
 
         </div>
-        <div class="two_col">
+        <div class="rigth-col">
             <div class="header__rigth">
 
                 <div class="user__contacts">
@@ -546,25 +574,39 @@
                     <div class="addBtn" onclick="clickAdd(this)" :data-model="model">+</div>
                 
             </div>
-            <span class="plus-btn" onclick="clickPlus(this);">
+            <div class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path
                         d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
                 </svg>
-            </span>
+            </div>
         </div>
     </component>
 
     <!-- Form qualifications -->
     <component style="display: none;" id="input-form-tpl">
         <div class="input-form-block">
-            <div class="input-box frame">
-                <form class="form__item">     
-                    <div class="form__title-item year">Год окончания:<input type="text" class="form__input-year" /></div>                
-                    <div class="form__title-item learning_center">Учебное заведение:<input type="text" class="form__input-learning_center" /></div>                    
-                    <div class="form__title-item course">Специализация:<input type="text" class="form__input-course" /></div>                    
+            <div class="input-box">
+                <form class="form"> 
+                    <div class="first">
+                        <div class="learning-center">
+                            <label for="lc" class="label">Учебное заведение:</label>
+                            <input id="lc" type="text" class="input-learning_center" />    
+                        </div>
+                        <div class="course">
+                            <label for="course" class="label">Специализация:</label>
+                            <input id="course" type="text" class="input-course" /> 
+                        </div>            
+                        
+                    </div>
+                    <div class="second">
+                        <div class="year-form">
+                            <label for="year" class="label">Год окончания:</label>
+                            <input id="year" type="text" class="input-year" maxlength="4" />
+                        </div>                        
+                    </div>           
                 </form>
-                <div class="formBtn" onclick="clickAddForm(this)" :data-model="model">Добавить</div>
+                <div class="addBtn" onclick="clickAddForm(this)" :data-model="model">+</div>
             </div>
             <span class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -600,9 +642,9 @@
         function clickAddForm(e) {
             $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
             const model = $(e).data('model')            
-            const year = $('.form__input-year', e.parentElement).val()
-            const learning_center = $('.form__input-learning_center', e.parentElement).val()
-            const course = $('.form__input-course', e.parentElement).val()
+            const year = $('.input-year', e.parentElement).val()
+            const learning_center = $('.input-learning_center', e.parentElement).val()
+            const course = $('.input-course', e.parentElement).val()
             let item = {
                 year,
                 learning_center,
@@ -613,7 +655,7 @@
         }
 
         function resetForm(form) {
-            $('.form__item').trigger('reset')
+            $('.form').trigger('reset')
         }
 
 
@@ -621,7 +663,7 @@
             hasCommentsPerm: true,
             input_comp: '',
             age: 47,
-            department: "Департамент информационных технологий",
+            department: "Административно-хозяйственный отдел",
             fullname: "Акиньшина Любовь Валерьевна",
             position: "Руководитель административно-хозяйственного отдела",
             education: "Белгородский государственный технологический университет им. В.Г. Шухова",
