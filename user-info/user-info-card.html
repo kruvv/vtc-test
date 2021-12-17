@@ -15,10 +15,12 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: sans-serif;
       background-color: #f2f4f3;
-    }    
+    } 
+
     .main {
       display: flex;
       flex-direction: column;
@@ -55,7 +57,8 @@
 
     .text {
       font-size: 1.1rem;
-    }    
+    } 
+
     .city {
       font-size: 0.8rem;
       color: #999;
@@ -146,18 +149,18 @@
       background-color: #fafafa;
       border-radius: 4px;    
       box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a; 
-      margin-top: 120px;
+      margin-top: 110px;
       margin-bottom: 15px;
       padding: 10px 20px;
     }
 
-    .result__sort:focus-visible,
+    .result-sort:focus-visible,
     .region:focus-visible {
       outline-color: #fff; 
       outline-width: 0;  
     }
 
-    .result__sort:hover,
+    .result-sort:hover,
     .region:hover {
       background-color: #f2f4f3;
     }
@@ -172,7 +175,7 @@
       background-color: #fff;          
     }
 
-    .result__sort {
+    .result-sort {
       border-style: none;
       width: 150px;
       padding: 10px;         
@@ -213,18 +216,19 @@
     
     /*======== Media ========*/
 
-    @media (max-width: 1024px) {
+    @media screen and (max-width: 1024px) {
       .main {
           margin: 0 20px;          
         }
       .result {
-          margin-top: 140px;
+          margin-top: 130px;
       }
     }
 
-    @media (max-width: 992px) {
+    @media screen and (max-width: 768px) {
+
         .result {
-            margin-top: 160px;
+            margin-top: 150px;
         }
         .columns-wrapper {
             flex-direction: column;
@@ -233,9 +237,7 @@
         .navi-menu {
           flex-direction: column;
         }
-        .main {
-          margin: 0 20px;          
-        }
+        
         .image {
               width: 150px;
               height: auto;
@@ -243,25 +245,31 @@
         
     }
 
-    @media (max-width: 500px) {
-      .search {
+    @media screen and (max-width: 544px) {
+
+        .search {
           flex-direction: column;
         }
+
         .region {
           margin: 5px 0;
         }
+
         .searchBtn {
           text-align: center;
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
+
         .result {
-            margin-top: 240px;
+            margin-top: 230px;
         }
+
         input {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
+
         .image {
               width: 120px;
               height: auto;
@@ -277,30 +285,31 @@
 <div id="app">
   <section class="navi-wrapper">
     <div class="columns-wrapper">
-        <div class="navi-menu">
-            <a href="" class="logo-wrapper" href="/">
-                <span class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo"  class="image" /></span>
-            </a>
-            <div class="navi-search">
-                <div class="search">
-                  <input type="search" name="text-search"  placeholder="настр" />                 
-                  <select class="region"  v-model="selected_regions">        
-                    <option v-for="e in regions">{{ e.name }}</option>                      
-                  </select>
-                  <span class="searchBtn" onclick="searchText()">Найти</span>
-                </div>
-            </div>
+      <div class="navi-menu">
+        <a href="" class="logo-wrapper" href="/">
+          <span class="logo-vtc">
+            <img src="./img/icon/Лого_ВТК-С(1).png" alt="logo"  class="image" />
+          </span>
+        </a>
+        <div class="navi-search">
+          <div class="search">
+            <input type="search" name="text-search"  placeholder="настр" />                 
+            <select class="region"  v-model="selected_regions">        
+              <option v-for="e in regions">{{ e.name }}</option>                      
+            </select>
+            <span class="searchBtn" onclick="searchText()">Найти</span>
           </div>
+        </div>
       </div>
+    </div>
   </section>
   <section class="main">
     <div class="result">
       <div class="result__quantity">Найдено {{ count }} специалистов</div>
-        <label for="sort">Сортировать:</label>
-        <select id="sort" class="result__sort" v-model="selected_sort">        
-          <option class="" v-for="e in sorts">{{ e.name }}</option>          
-        </select>
-    
+      <label for="sort">Сортировать:</label>
+      <select id="sort" class="result-sort" v-model="selected_sort">        
+        <option class="" v-for="e in sorts">{{ e.name }}</option>          
+      </select>    
     </div>
     <div class="cards" >
       <div class="card" v-for="el in cards">

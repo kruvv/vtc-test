@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Компетенции</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #f2f4f3;
+        }
+
+        .navi-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #cbe6fc;
+            width: 100%;
+            z-index: 5;
+        }
+        .columns-wrapper {
+            display: flex;
+            justify-content: space-between;            
+            margin: 0 40px;
+        }
+        .navi-menu {
+           display: flex;
+           align-self: center;
+        }
+        .search {
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 10px;
+        }
+
+        .container {
+            display: grid;
+            border: 1px solid red;
+            margin-top: 100px;
+            /* height: 100vh; */
+            justify-items: stretch;
+        }
+        .item {
+            border: 1px solid green;
+            /* width: 100px;
+            height: 100px; */
+        }
+     
+    </style>
+</head>
+
+<body>
+    <!-- Nav-menu -->
+    <div class="navi-wrapper">
+        <div class="columns-wrapper">
+            <a href="" class="logo-wrapper" href="/">
+                <div class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" class="image" /></div>
+            </a>
+            <div class="navi-menu">                
+                <div class="search">
+                    <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
+                    <div class="searchBtn" onclick="search()">Найти</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="block1 item">1</div>
+        <div class="block2 item">2</div>
+        <div class="block3 item">3</div>
+        <div class="block4 item">4</div>
+    </div>
+
+
+    
+
+
+    <content id="app"> 
+        <div class="left-col">
+            <div class="header__left">
+                <div class="user-info">
+                    <h1>{{fullname}}</h1>
+                    <h3>{{position}}</h3>
+                    <div class="department">
+                        <span class="department__title">Департамент:</span>
+                        <span class="department__text">&nbsp;{{department}}</span>
+                    </div>
+                    <div class="birthday">
+                        <span class="birthday__title">Дата рождения:</span>
+                        &nbsp;{{birthday}}
+                        <span class="age">47 лет.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sections__left">
+                <section>
+                    <h2>Образование</h2>
+                    <div class="education">
+                        <!--🎓&nbsp;-->{{education}}</div>
+                    <div class="education-faculty">{{faculty}}</div>
+                </section>
+                <section>
+                    <h2>Навыки</h2>
+                                              
+                        <div v-for="e in competentions" class="competencies">
+                            <div class="competencies__icon">-</div>
+                            <div class="competencies__text">{{ e }}</div>                                
+                            <div class="competencies__icon-del">x</div>
+                        </div>
+                    
+                    <input-block model="competentions" />
+                </section>
+                <section>
+                    <h2>Повышение квалификации, курсы</h2>
+                    
+                        <div v-for="e in qualifications" class="qualifications">
+                            <div class="qualifications__year">{{e.year}}</div>
+                            <div class="qualifications__text">
+                                <span class="qualifications__course">{{ e.learning_center }}</span>
+                                <!-- <span>{{ e.city }}</span><br> -->
+                                <span>{{ e.course }}&nbsp;</span>                                
+                                <!-- <span>{{ e.diploma }}.</span>                                 -->
+                            </div>
+                            <div class="qualifications__icon-del">x</div>
+                        </div>
+                    
+                    <input-form-block model="qualifications" class="qualifications__input"/>
+                </section>
+            </div>
+
+        </div>
+        <div class="rigth-col">
+            <div class="header__rigth">
+
+                <div class="user__contacts">
+                    <div class="contacts"><span class="contacts__title">Служебный телефон:</span>&nbsp;1111</div>
+                    <div class="contacts"><span class="contacts__title">Моб. телефон:</span>&nbsp;+7 (111) 111-11-11</div>
+                    <div class="contacts"><span class="contacts__title">E-mail:</span>&nbsp;
+                        <a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a>
+                    </div>
+                    <div class="contacts"><span class="contacts__title">Город:</span>&nbsp;Москва</div>
+                    <div class="contacts"><span class="contacts__title">Руководитель:</span>&nbsp;Иванов Иван Иванович</div>
+                </div>
+
+
+            </div>
+
+            <div class="sections__rigth">
+                <section class="additional__information">
+                    <h3>Дополнительная информация</h3>
+                    <div><span class="information__title">
+                        <!--🚗&nbsp;-->Личный автомобиль:</span> Да
+                    </div>
+                    <div><span class="information__title">Права категории:</span> B</div>
+                </section>
+                <h3>Комментарии</h3>
+                <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
+                    <div v-for="e in comments">
+                        <small>{{ e.author }}&nbsp;{{ e.date }}</small>
+                        <div>&nbsp;{{ e.text }}</div>                        
+                    </div>
+                    <input-block model="comments" class="comments__input" />                   
+                </section>
+            </div>
+        </div>
+    </content>
+
+    <!-- Component textarea -->
+    <component style="display: none;" id="input-block-tpl">
+        <div class="input-block">
+            <div class="input-box boxSize">                
+                    <textarea 
+                        name=""
+                        class="custom" 
+                        id="textArea"                      
+                        cols="20"
+                        rows="3"  
+                        autofocus 
+                        placeholder="Введите текст..." 
+                        wrap="hard"     
+                        >
+                    </textarea>
+                    <div class="addBtn" onclick="clickAdd(this)" :data-model="model">+</div>
+                
+            </div>
+            <div class="plus-btn" onclick="clickPlus(this);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                </svg>
+            </div>
+        </div>
+    </component>
+
+    <!-- Component form qualifications -->
+    <component style="display: none;" id="input-form-tpl">
+        <div class="input-form-block">
+            <div class="input-box">
+                <form class="form"> 
+                    <div class="first">
+                        <div class="learning-center">
+                            <label for="lc" class="label">Учебное заведение:</label>
+                            <input id="lc" type="text" class="input-learning_center" />    
+                        </div>
+                        <div class="course">
+                            <label for="course" class="label">Специализация:</label>
+                            <input id="course" type="text" class="input-course" /> 
+                        </div>            
+                        
+                    </div>
+                    <div class="second">
+                        <div class="year-form">
+                            <label for="year" class="label">Год окончания:</label>
+                            <input id="year" type="text" class="input-year" maxlength="4" />
+                        </div>                        
+                    </div>           
+                </form>
+                <div class="addBtn" onclick="clickAddForm(this)" :data-model="model">+</div>
+            </div>
+            <span class="plus-btn" onclick="clickPlus(this);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                </svg>
+            </span>
+        </div>
+    </component>
+
+    <script type="text/javascript">
+        function clickPlus(e) {
+            $(e).hide()
+            $('.input-box', e.parentElement).fadeIn()    
+        }
+
+        function clickAdd(e) {
+            $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
+            const model = $(e).data('model')
+            const value = $('textarea', e.parentElement).val()
+            if('comments' === model) {                
+                let item = {
+                    author:   'hr',
+                    text: value,
+                    date: new Date().toLocaleDateString()
+                }
+                if (item) data[model].push(item)
+            } else if (value) data[model].push(value)
+
+           
+        }
+
+        function clickAddForm(e) {
+            $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
+            const model = $(e).data('model')            
+            const year = $('.input-year', e.parentElement).val()
+            const learning_center = $('.input-learning_center', e.parentElement).val()
+            const course = $('.input-course', e.parentElement).val()
+            let item = {
+                year,
+                learning_center,
+                course
+            }
+            if (item) data[model].push(item)
+            resetForm(e)
+        }
+
+        function resetForm(form) {
+            $('.form').trigger('reset')
+        }
+
+        function search() {
+            console.log('Ops!!!')
+        }
+
+        const data = {
+            hasCommentsPerm: true,
+            input_comp: '',
+            birthday: '01 декабря 1974 года',
+            age: 47,
+            department: "Административно-хозяйственный отдел",
+            fullname: "Акиньшина Любовь Валерьевна",
+            position: "Руководитель административно-хозяйственного отдела",
+            education: "Белгородский государственный технологический университет им. В.Г. Шухова",
+            faculty: "Экономика и управление на предприятии промышленности строительных материалов",
+
+            comments: [{
+                    text: 'раз коммент',
+                    author: 'hr'
+                },
+                {
+                    text: 'два коммент',
+                    author: 'начальник'
+                },
+                {
+                    text: 'три коммент',
+                    author: 'ещё кто-то'
+                },
+            ],
+
+            competentions: [
+                'Эксплуатация и администрирование телефонной станции AVAYA, заключение договоров с ПАО МГТС. Техническое обслуживание центра,проверка работоспособности слаботочных систем.',
+                'Avaya CM CCE CMS BCMS APC AES EMC',
+                'Asterisk',
+                'UNIX: ssh, samba, amanda, bacula, openvpn, httpd, named, sendmail, mysql, motion, ftp, mysql, firebird.',
+                'Windows: Windows 2003 Server, Active Directory, remote desktop, MsSQL.Установка, настройка оборудования voip. Установка, настройка оборудования FCD IP.',
+                'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
+            ],
+
+            qualifications: [{
+                    year: 2020,
+                    learning_center: 'Колледж предпринимательства',
+                    course: 'CISCO CCNA',
+                    diploma: 'Свидетельство',
+                    city: 'г. Москва'
+                },
+                {
+                    year: 2016,                    
+                    learning_center: 'Учебный центр ОАО"Инфотекс"',
+                    course: 'Vipnet админстрирование',
+                    diploma: 'Свидетельство',
+                    city: 'г. Москва'
+                },
+                {
+                    year: 2012,
+                    learning_center: 'Специалист при МВТУ им.Баумана',
+                    course: 'UNIX введение в администрирование',
+                    diploma: 'Свидетельство',
+                    city: 'г. Москва'
+                },
+                {
+                    year: 2012,
+                    learning_center: 'Комптек',
+                    course: 'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x)',
+                    diploma: 'Свидетельство',
+                    city: 'г. Санкт-Петербург'
+                },
+                {
+                    year: 2010,
+                    text: 'Vipnet админстрирование: , ',
+                    learning_center: 'Учебный центр ОАО"Инфотекс-Технолоджи"',
+                    course: 'Администрирование систем гражданского шифрования',
+                    diploma: 'Свидетельство',
+                    city: 'г. Новосибирск'
+                },
+            ], 
+
+           
+            comments: [
+                {
+                    author: 'hr',
+                    text: 'Очень сильный кандидат'
+                },
+                {
+                    author: 'Руководитель',
+                    text: 'Высокие знания в  поиске и устранении аварий на сети ШПД'
+                }
+            ],
+           
+
+        }
+
+
+        Vue.component('input-block', {
+            props: ['model'],
+            template: $('#input-block-tpl').html()
+        })
+
+        Vue.component('input-form-block', {
+            props: ['model'],
+            template: $('#input-form-tpl').html()
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data
+        })
+    </script>
+</body>
+
+</html>

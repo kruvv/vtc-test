@@ -21,26 +21,20 @@
             background-color: #f2f4f3;
         }
 
-        h2 {
+        h2, h3, h4 {
             color: #999;
             margin-bottom: 10px;
-        }
-
-        h3, h4 {
-            color: #999;
-            margin-bottom: 10px;
-        }
+        }        
 
         #app {
             display: flex;           
-            margin: 130px auto;            
+            margin: 125px auto;            
             background-color: #fff;
             border-radius: 4px;    
             box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a;            
-            max-width: 1280px;
+            width: 1280px;
             padding: 16px;
-        }
-       
+        }       
 
         .left-col {
             display: flex;
@@ -57,12 +51,8 @@
 
         /*====== Comments ======*/
 
-        .comments {
-            /* border: 1px ridge #999;
-            padding: 15px; */
-            width: 350px;
-            /* max-height: 100px;             */
-            /* float: left; */
+        .comments {           
+            width: 350px;            
             border-radius: 10px;
             overflow: auto;
             transition: 1s;
@@ -87,14 +77,13 @@
             border-bottom: 1px solid #e5e5e5;
         }
 
-        .header__left {
-            /* flex: 2; */
+        .header-left {           
             min-height: 15vh;
             border-bottom: 1px solid #e5e5e5;
             padding: 0 20px;
         }
 
-        .header__rigth {           
+        .header-rigth {           
             min-height: 15vh;
             padding: 0 20px;
             border-bottom: 1px solid #e5e5e5;
@@ -106,12 +95,12 @@
             margin-bottom: 20px;
         }
 
-        .sections__left {
+        .sections-left {
             flex: 2;
             padding: 20px;
         }
 
-        .sections__rigth {
+        .sections-rigth {
             flex: 1;
             padding: 20px;
         }
@@ -149,11 +138,11 @@
         /*====== Input ======*/
         
         input {
-            border: none;
-            width: 95%;
+            border: none;            
             padding: 10px;
             font-size: 1.2rem;
         }
+        
         input:focus-visible {
             outline-color: #92ccfc;
         }
@@ -163,17 +152,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-       
+        }       
 
         .input-box {           
             display: none;      
             width: 95%;
         }
-        .boxSize {
-            flex: 1;
-            padding: 0 20px;
-        }
+        
 
         /*======== Form ============*/        
                
@@ -182,7 +167,14 @@
             flex-wrap: wrap;
         }
 
-        textarea,
+        .textarea-box,
+        .form-box {
+            display: flex;
+            flex: 1;
+            padding: 0 20px;           
+        }
+
+        .textarea-custom,
         .input-year,
         .input-course,
         .input-learning_center {
@@ -190,33 +182,29 @@
             border-radius: 5px;
             padding: 5px;
         }
-        .year {
+        
+        .year,
+        .course,
+        .learning_center {
             flex: 1;
             color: #999;
             font-size: 0.9rem;
         }
-        .learning_center {
-            flex: 3;
-            color: #999;
-            font-size: 0.9rem;
-        }
-        .course {
-            flex: 3;
-            color: #999;
-            font-size: 0.9rem;
-        }
+
         .form {
             display: flex;
-            flex-direction: column;           
-           
+            flex-direction: column; 
+            width: 90%;  
+            margin-right: 15px; 
         }
 
         .second,
         .first {
             display: flex;
             flex-direction: row;
-        }
-       
+            align-items: flex-end;
+            flex-wrap: wrap;            
+        }       
 
         .label {
             color: #999;
@@ -229,69 +217,54 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
+
         .year-form {
             max-width: 15%;
+            margin-right: 20px;
         }
-        .custom {
-            float: left;
+        
+        .textarea-custom {           
             margin-right: 15px;
             width: 90%; 
             height: 60px; 
             resize: none; 
         }
         /*====== Button ======*/
-        
-        .formBtn,
-        .addBtn,
+                      
         .searchBtn {
-            background: #8cc9fc;
+            background: #3fa8fb;
             color: rgb(255, 255, 255);           
             font-size: 1.2rem;
             cursor: pointer;
             transition: 0.3s;
         }
-        .addBtn {
-           padding: 10px 15px;
-           margin-left: 0;
-           margin-right: auto; 
-           margin-top: 10px;
-           float: left; 
-           border-radius: 50%;    
-        }
+        
         .searchBtn {  
             padding: 10px 30px;
         }
-
-        .formBtn {
-            margin-right: 20px;
-            float: right;
-            margin-top: 20px;
-            padding: 10px 30px;
-        }
-
-        .formBtn:hover,
-        .addBtn:hover, 
+              
         .searchBtn:hover {
-            background-color: #5bb2fa;
+            background-color: #0583e7;
         }
 
-        .plus-btn {
-            padding-top: 10px;
+        .plus-btn {            
+            align-self: center;
             cursor: pointer;            
         }
 
         .plus-btn path {
-            fill: #1b66b1;
+            fill: #3fa8fb;
         }
 
         .plus-btn:hover path {
-            fill: #3986e7;
+            fill: #0583e7;
         }
 
         
         /*======== Education =========*/
+
         .education {
             font-size: 1.3rem;
             font-weight: 700;
@@ -312,147 +285,154 @@
             justify-content: space-between;           
         }
         
-        .competencies__icon,
-        .qualifications__year {
+        .marker,
+        .qualifications-year {
             padding: 0 20px;            
             align-self: center;
         }
-        .qualifications__year {
+
+        .qualifications-year {
             font-size: 0.9rem;
         }
-        .competencies__text,
-        .qualifications__text  {            
+
+        .competencies-text,
+        .qualifications-text  {            
             flex: 3;
             width: 705px;            
             word-wrap: break-word;
         }
-        .qualifications__text  {            
-           
-        }
-        .qualifications__course  {            
+        
+        .qualifications-course  {            
             font-weight: 700;
             padding-right: 15px;
         }
         
-        .competencies__icon-del,
-        .qualifications__icon-del {
+        .icon-del {
             color: #fff;
             padding: 0 20px;            
             align-self: center;
         }
-        .competencies__text:hover,
-        .qualifications__text:hover, 
-        .competencies__text:hover~.competencies__icon-del,
-        .qualifications__text:hover~.qualifications__icon-del {
+
+        .marker:hover,
+        .competencies-text:hover,
+        .qualifications-text:hover, 
+        .competencies-text:hover~.marker,
+        .competencies-text:hover~.icon-del,
+        .qualifications-text:hover~.icon-del {
             color: #777575;
             transition: 0.3s;   
         }
-       
-        .competencies__icon-del:hover,        
-        .qualifications__icon-del:hover {
+                     
+        .icon-del:hover,
+        .icon-del:hover~.competencies-text {
             color: #777575;            
             transition: 0.3s;   
             cursor: pointer;                
         }
-        
-        
+                
         /*======= Contacts =======*/
+
         .contacts {
             margin-bottom: 10px;
         }
-        .contacts__title {
+        
+        .title {
             color: #999;
             font-size: 0.9rem;
         }
 
         /*======= Birthday =======*/
-        .birthday {
-            /* font-size: 1.1rem; */
-            margin-top: 15px;            
-        }
-        .birthday__title {
-            color: #999;
-            font-size: 0.9rem;
-        }
 
+        .birthday {            
+            margin: 18px 0;            
+        }
+        
         .age {
             padding-left: 25px;
-        }
-
-        .information__title {
-            color: #999;
+        } 
+       
+        .department {
             font-size: 0.9rem;
-        }
-
-        .new__item {
-            display: flex;
         }
        
-
-        .department {
-            
-        }
-        .department__title {
-            color: #999;
-            font-size: 0.9rem;
-        }
        
        
         /*============= Media ============*/
   
-        @media (max-width: 1024px) {
+        @media screen and (max-width: 1024px) {
+
             #app {
-                max-width: 944px;
-                flex-direction: column;
-                margin: 150px auto;
+                width: 944px; 
+                flex-direction: column;                             
             }
+
             .columns-wrapper {
-                flex-direction: column;                
-                height: 140px;
+                flex-direction: column; 
             }
            
             .comments {
                 width: 100%;
-            }   
+            } 
+
             .rigth-col {               
                 border-left: 0 solid #fffdfd;
             }          
         }
 
-        @media (max-width: 767px) {
-            #app {
-                width: 708px;
-               
-            }  
-            .columns-wrapper {
-                flex: 1;
+        @media screen and (max-width: 768px) {
+
+            #app {            
+               width: 748px;               
+            } 
+        }
+
+        @media screen and (max-width: 544px) {
+
+            #app { 
+                width: 500px; 
+                margin: 190px auto 20px auto;               
             }
 
-          .navi-menu {
-              flex-direction: column;
-          }
-          .image {
-              width: 150px;
-              /* height: auto; */
-          }
-        }
-        @media (max-width: 544px) {
-            #app {
-                margin: 190px 10px;
+            .navi-menu {
+                flex-direction: column;
             }
+
             .search {
                 flex-direction: column;
             }
+
+            .search-input {
+                flex: 1;               
+                margin-bottom: 5px;
+            }
+
+            .searchBtn {
+                flex: 1;                
+                text-align: center;
+                align-self: stretch;
+            }
+
             .columns-wrapper {                          
                 height: 180px;
             }
+
+            .first {               
+                flex-direction: column; 
+                align-items: stretch;
+            }
+
+            .image {
+              width: 150px;
+              height: auto;
+          }
         }
        
     </style>
 </head>
 
 <body>
-    <div class="navi-wrapper">
+    <!-- Nav-menu -->
+    <header class="navi-wrapper">
         <div class="columns-wrapper">
             <div class="navi-menu">
                 <a href="" class="logo-wrapper" href="/">
@@ -460,109 +440,110 @@
                 </a>
                 <div class="search">
                     <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
-                    <div class="searchBtn" onclick="searchText()">Найти</div>
+                    <div class="searchBtn" onclick="search()">Найти</div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
 
-    <content id="app"> 
+    <main id="app"> 
+        
+        <!-- Left column -->
         <div class="left-col">
-            <div class="header__left">
+            <div class="header-left">
                 <div class="user-info">
                     <h1>{{fullname}}</h1>
                     <h3>{{position}}</h3>
                     <div class="department">
-                        <span class="department__title">Департамент:</span>
-                        <span class="department__text">&nbsp;{{department}}</span>
+                        <span class="title">Департамент:</span>
+                        <span class="department-text">&nbsp;{{department}}</span>
                     </div>
                     <div class="birthday">
-                        <span class="birthday__title">Дата рождения:</span>
-                         01 декабря 1974 года
-                        <span class="age">47 лет.</span>
+                        <span class="title">Дата рождения:</span>
+                        <span class="bithday-field"></span>&nbsp;{{birthday}}</span>
+                        <span class="age">{{ age }} лет</span>
                     </div>
                 </div>
             </div>
-            <div class="sections__left">
+            <div class="sections-left">
                 <section>
                     <h2>Образование</h2>
-                    <div class="education">
-                        <!--🎓&nbsp;-->{{education}}</div>
+                    <div class="education"><!--🎓&nbsp;-->{{education}}</div>
                     <div class="education-faculty">{{faculty}}</div>
                 </section>
                 <section>
-                    <h2>Навыки</h2>
-                                              
+                    <h2>Навыки</h2>                                              
                         <div v-for="e in competentions" class="competencies">
-                            <div class="competencies__icon">-</div>
-                            <div class="competencies__text">{{ e }}</div>                                
-                            <div class="competencies__icon-del">x</div>
-                        </div>
-                    
+                            <div class="marker">-</div>
+                            <div class="competencies-text">{{ e }}</div>                                
+                            <div class="icon-del">x</div>
+                        </div>                    
                     <input-block model="competentions" />
                 </section>
                 <section>
-                    <h2>Повышение квалификации, курсы</h2>
-                    
+                    <h2>Повышение квалификации, курсы</h2>                    
                         <div v-for="e in qualifications" class="qualifications">
-                            <div class="qualifications__year">{{e.year}}</div>
-                            <div class="qualifications__text">
-                                <span class="qualifications__course">{{ e.learning_center }}</span>
-                                <!-- <span>{{ e.city }}</span><br> -->
-                                <span>{{ e.course }}&nbsp;</span>                                
-                                <!-- <span>{{ e.diploma }}.</span>                                 -->
+                            <div class="qualifications-year">{{e.year}}</div>
+                            <div class="qualifications-text">
+                                <span class="qualifications-course">{{ e.learning_center }}</span>                               
+                                <span>{{ e.course }}&nbsp;</span> 
                             </div>
-                            <div class="qualifications__icon-del">x</div>
-                        </div>
-                    
-                    <input-form-block model="qualifications" class="qualifications__input"/>
+                            <div class="icon-del">x</div>
+                        </div>                    
+                    <input-form-block model="qualifications" />
                 </section>
             </div>
 
         </div>
-        <div class="rigth-col">
-            <div class="header__rigth">
 
-                <div class="user__contacts">
-                    <div class="contacts"><span class="contacts__title">Служебный телефон:</span>&nbsp;1111</div>
-                    <div class="contacts"><span class="contacts__title">Моб. телефон:</span>&nbsp;+7 (111) 111-11-11</div>
-                    <div class="contacts"><span class="contacts__title">E-mail:</span>&nbsp;
+        <!-- Rigth column -->
+        <div class="rigth-col">
+            <div class="header-rigth">
+                <div class="user-contacts">
+                    <div class="contacts"><span class="title">Служебный телефон:</span>&nbsp;1111</div>
+                    <div class="contacts"><span class="title">Моб. телефон:</span>&nbsp;+7 (111) 111-11-11</div>
+                    <div class="contacts"><span class="title">E-mail:</span>&nbsp;
                         <a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a>
                     </div>
-                    <div class="contacts"><span class="contacts__title">Город:</span>&nbsp;Москва</div>
-                    <div class="contacts"><span class="contacts__title">Руководитель:</span>&nbsp;Иванов Иван Иванович</div>
+                    <div class="contacts"><span class="title">Город:</span>&nbsp;Москва</div>
+                    <div class="contacts"><span class="title">Руководитель:</span>&nbsp;Иванов Иван Иванович</div>
                 </div>
-
-
             </div>
-
-            <div class="sections__rigth">
-                <section class="additional__information">
+            <div class="sections-rigth">
+                <section class="additional-info">
                     <h3>Дополнительная информация</h3>
-                    <div><span class="information__title">
-                        <!--🚗&nbsp;-->Личный автомобиль:</span> Да
+                    <div>
+                        <span class="title"><!--🚗&nbsp;-->Личный автомобиль:</span> 
+                        <span class="info-text">{{ haveCar }}</span>
                     </div>
-                    <div><span class="information__title">Права категории:</span> B</div>
+                    <div>
+                        <span class="title">Права категории:</span>
+                        <span class="info-text">{{ driver_license }}</span>
+                    </div>
                 </section>
-                <h3>Комментарии</h3>
-                <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
-                    <div v-for="e in comments">
-                        <small>{{ e.author }}&nbsp;{{ e.date }}</small>
-                        <div>&nbsp;{{ e.text }}</div>                        
-                    </div>
-                    <input-block model="comments" class="comments__input" />                   
+                <section class="comments-info">
+                    <h3>Комментарии</h3>
+                    <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
+                        <div v-for="e in comments">
+                            <small>{{ e.author }}&nbsp;{{ e.date }}</small>
+                            <div>&nbsp;{{ e.text }}</div>                        
+                        </div>
+                        <input-block model="comments" />                   
+                    </section>
                 </section>
             </div>
         </div>
-    </content>
+    </main>
 
+    <!-- Component textarea -->
     <component style="display: none;" id="input-block-tpl">
         <div class="input-block">
-            <div class="input-box boxSize">                
+            <div class="input-box ">  
+                <div class="textarea-box">
                     <textarea 
-                        name=""
-                        class="custom" 
+                        name="myText"
+                        class="textarea-custom" 
                         id="textArea"                      
                         cols="20"
                         rows="3"  
@@ -570,9 +551,14 @@
                         placeholder="Введите текст..." 
                         wrap="hard"     
                         >
-                    </textarea>
-                    <div class="addBtn" onclick="clickAdd(this)" :data-model="model">+</div>
-                
+                    </textarea>                   
+                    <span class="plus-btn" onclick="clickAdd(this)" :data-model="model" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                        </svg>
+                    </span>
+                </div>
             </div>
             <div class="plus-btn" onclick="clickPlus(this);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -583,32 +569,39 @@
         </div>
     </component>
 
-    <!-- Form qualifications -->
+    <!-- Component form qualifications -->
     <component style="display: none;" id="input-form-tpl">
         <div class="input-form-block">
             <div class="input-box">
-                <form class="form"> 
-                    <div class="first">
-                        <div class="learning-center">
-                            <label for="lc" class="label">Учебное заведение:</label>
-                            <input id="lc" type="text" class="input-learning_center" />    
+                <div class="form-box">
+                    <form class="form"> 
+                        <div class="first">
+                            <div class="year-form">
+                                <label for="year" class="label">Год окончания:</label>
+                                <input id="year" type="text" class="input-year" maxlength="4" />
+                            </div>   
+                            <div class="learning-center">
+                                <label for="lc" class="label">Учебное заведение:</label>
+                                <input id="lc" type="text" class="input-learning_center" />    
+                            </div>
                         </div>
-                        <div class="course">
-                            <label for="course" class="label">Специализация:</label>
-                            <input id="course" type="text" class="input-course" /> 
-                        </div>            
-                        
-                    </div>
-                    <div class="second">
-                        <div class="year-form">
-                            <label for="year" class="label">Год окончания:</label>
-                            <input id="year" type="text" class="input-year" maxlength="4" />
-                        </div>                        
-                    </div>           
-                </form>
-                <div class="addBtn" onclick="clickAddForm(this)" :data-model="model">+</div>
+                        <div class="second">
+                            <div class="course">
+                                <label for="course" class="label">Название курса:</label>
+                                <input id="course" type="text" class="input-course" /> 
+                            </div> 
+                                                
+                        </div>           
+                    </form>                    
+                    <span class="plus-btn" onclick="clickAddForm(this)" :data-model="model" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                        </svg>
+                    </span>
+                </div>
             </div>
-            <span class="plus-btn" onclick="clickPlus(this);">
+            <span class="plus-btn" onclick="clickPlus(this)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path
                         d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
@@ -624,7 +617,7 @@
         }
 
         function clickAdd(e) {
-            $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
+            $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
             const model = $(e).data('model')
             const value = $('textarea', e.parentElement).val()
             if('comments' === model) {                
@@ -640,7 +633,7 @@
         }
 
         function clickAddForm(e) {
-            $(e.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
+            $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
             const model = $(e).data('model')            
             const year = $('.input-year', e.parentElement).val()
             const learning_center = $('.input-learning_center', e.parentElement).val()
@@ -658,11 +651,17 @@
             $('.form').trigger('reset')
         }
 
+        function search() {
+            console.log('Ops!!!')
+        }
 
         const data = {
             hasCommentsPerm: true,
             input_comp: '',
+            birthday: '01 декабря 1974 года',
             age: 47,
+            auto: false,
+            driver_license: 'B',
             department: "Административно-хозяйственный отдел",
             fullname: "Акиньшина Любовь Валерьевна",
             position: "Руководитель административно-хозяйственного отдела",
@@ -758,7 +757,12 @@
 
         const app = new Vue({
             el: '#app',
-            data
+            data,
+            computed: {
+                haveCar: function () {
+                    return this.auto  ? 'Да' : 'Нет' 
+                }
+            }
         })
     </script>
 </body>
