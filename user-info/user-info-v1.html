@@ -63,6 +63,14 @@
             color: #999;
         }
 
+        .comment-box {
+            margin-bottom: 5px;
+        }
+
+        .comment-input {
+            margin-top: 15px;
+        }
+
         /* .comments.collapsed {
             max-height: 8px;
             overflow: hidden;
@@ -117,7 +125,7 @@
         }    
         
         .columns-wrapper {
-            max-width: 1300px;
+            min-width: 1200px;
             margin: 0 auto;
             padding: 16px;            
         }
@@ -131,8 +139,11 @@
 
         .search {
             display: flex;
-            align-items: center;
-           
+            align-items: center;           
+        }
+
+        .search-input {
+            min-width: 300px;
         }
 
         /*====== Input ======*/
@@ -367,7 +378,7 @@
             }
 
             .columns-wrapper {
-                flex-direction: column; 
+                min-width: 900px;
             }
            
             .comments {
@@ -384,6 +395,10 @@
             #app {            
                width: 748px;               
             } 
+
+            .columns-wrapper {
+                min-width: 700px;
+            }
         }
 
         @media screen and (max-width: 544px) {
@@ -393,21 +408,16 @@
                 margin: 190px auto 20px auto;               
             }
 
+            .search,
             .navi-menu {
                 flex-direction: column;
             }
-
-            .search {
-                flex-direction: column;
-            }
-
+          
             .search-input {
-                flex: 1;               
                 margin-bottom: 5px;
             }
 
             .searchBtn {
-                flex: 1;                
                 text-align: center;
                 align-self: stretch;
             }
@@ -424,7 +434,7 @@
             .image {
               width: 150px;
               height: auto;
-          }
+            }
         }
        
     </style>
@@ -525,11 +535,11 @@
                 <section class="comments-info">
                     <h3>Комментарии</h3>
                     <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
-                        <div v-for="e in comments">
+                        <div v-for="e in comments" class="comment-box">
                             <small>{{ e.author }}&nbsp;{{ e.date }}</small>
                             <div>&nbsp;{{ e.text }}</div>                        
                         </div>
-                        <input-block model="comments" />                   
+                        <input-block model="comments" class="comment-input"/>                   
                     </section>
                 </section>
             </div>
