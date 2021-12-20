@@ -26,7 +26,8 @@
       flex-direction: column;
       align-items: center;
       margin: 20px auto;
-      max-width: 1200px;
+      max-width: 970px;
+      padding: 0 20px;
     }
 
     /*========= Card ===========*/
@@ -57,6 +58,7 @@
 
     .text {
       font-size: 1.1rem;
+      text-align: justify;
     } 
 
     .city {
@@ -75,7 +77,6 @@
       text-align: end;
       margin-right: 20px;      
       color: #999;
-      
     }
     
     .item {
@@ -90,29 +91,17 @@
       top: 0;
       left: 0;
       width: 100%;
-    }
-
-    .columns-wrapper {
-      max-width: 1300px;
+      min-height: 40px;
+      padding: 16px;     
       margin: 0 auto;
-      padding: 16px;            
     }
-
+    
     .search {
       display: flex;
+      justify-content: center;
       border-radius: 5px;
     }
 
-    .navi-menu {
-      justify-content: space-between;
-      display: flex;
-      align-items: center;
-      min-height: 80px;
-    }
-
-    .navi-search {
-      display: flex;
-    }
 
     /*====== Input ======*/
     
@@ -149,7 +138,7 @@
       background-color: #fafafa;
       border-radius: 4px;    
       box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a; 
-      margin-top: 110px;
+      margin-top: 70px;
       margin-bottom: 15px;
       padding: 10px 20px;
     }
@@ -160,14 +149,31 @@
       outline-width: 0;  
     }
 
+    .result-sort {
+      margin-top: 2px;
+    }
+
     .result-sort:hover,
     .region:hover {
       background-color: #f2f4f3;
     }
 
     .result__quantity {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid rgb(219, 219, 219);
       padding: 10px 0;
+    }
+  
+    .link {
+      text-decoration: none;
+      padding: 8px 25px;
+    }
+
+    .link:hover {
+      background-color: #eef1f0;  
+      transition: .5s;   
     }
 
     option {
@@ -212,69 +218,7 @@
     
     mark {
       background-color: rgb(240, 241, 123);
-    }
-    
-    /*======== Media ========*/
-
-    @media screen and (max-width: 1024px) {
-      .main {
-          margin: 0 20px;          
-        }
-      .result {
-          margin-top: 130px;
-      }
-    }
-
-    @media screen and (max-width: 768px) {
-
-        .result {
-            margin-top: 150px;
-        }
-        .columns-wrapper {
-            flex-direction: column;
-        }        
-       
-        .navi-menu {
-          flex-direction: column;
-        }
-        
-        .image {
-              width: 150px;
-              height: auto;
-        }
-        
-    }
-
-    @media screen and (max-width: 544px) {
-
-        .search {
-          flex-direction: column;
-        }
-
-        .region {
-          margin: 5px 0;
-        }
-
-        .searchBtn {
-          text-align: center;
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-
-        .result {
-            margin-top: 230px;
-        }
-
-        input {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-
-        .image {
-              width: 120px;
-              height: auto;
-        }
-    }
+    } 
 
   </style>
 </head>
@@ -284,28 +228,21 @@
   
 <div id="app">
   <section class="navi-wrapper">
-    <div class="columns-wrapper">
-      <div class="navi-menu">
-        <a href="" class="logo-wrapper" href="/">
-          <span class="logo-vtc">
-            <img src="./img/icon/Лого_ВТК-С(1).png" alt="logo"  class="image" />
-          </span>
-        </a>
-        <div class="navi-search">
-          <div class="search">
-            <input type="search" name="text-search"  placeholder="настр" />                 
-            <select class="region"  v-model="selected_regions">        
-              <option v-for="e in regions">{{ e.name }}</option>                      
-            </select>
-            <span class="searchBtn" onclick="searchText()">Найти</span>
-          </div>
-        </div>
-      </div>
+    <div class="search">
+      <input type="search" name="text-search"  placeholder="настр" />                 
+      <select class="region"  v-model="selected_regions">        
+        <option v-for="e in regions">{{ e.name }}</option>                      
+      </select>
+      <span class="searchBtn" onclick="searchText()">Найти</span>
     </div>
   </section>
   <section class="main">
     <div class="result">
-      <div class="result__quantity">Найдено {{ count }} специалистов</div>
+      <div class="result__quantity">
+        <div class="quantity">Найдено {{ count }} специалистов</div>
+        <div class="map"><a href="#!" class="link">На карте</a></div>
+      </div>
+      
       <label for="sort">Сортировать:</label>
       <select id="sort" class="result-sort" v-model="selected_sort">        
         <option class="" v-for="e in sorts">{{ e.name }}</option>          
@@ -388,9 +325,9 @@
     regions: [
       {name: 'РФ'}, {name: 'ЦФО'}, {name:'СЗФО'}, {name:'ЮФО'}, {name:'СКФО'}, {name:'ПФО'}, {name:'УрФО'}, {name:'СФО'}, {name:'ДФО'}
     ],
-    selected_sort: "По соответствию",
+    selected_sort: "Нет",
     sorts: [
-      {name: "По соответствию"}, {name: "По дате"}, {name: "По возрасту"}
+      {name: "Нет"}, {name: "По городу"}, {name: "По возрасту"}
     ]
   }
 
