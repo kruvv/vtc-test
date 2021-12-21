@@ -21,38 +21,39 @@
             background-color: #f2f4f3;
         }
 
+        h1,h2,h3,h4,h5,h6 {
+            font-family: 'Trebuchet MS', 'Tahoma', 'Andale Mono', 'Roboto', serif;
+        }
+
         h2, h3, h4 {
             color: #999;
             margin-bottom: 10px;
+            font-weight: 400;
         }        
 
         #app {
-            display: flex;           
-            margin: 125px auto;            
+            display: flex;   
+            flex-direction: column;        
+            margin: 90px auto;     
             background-color: #fff;
             border-radius: 4px;    
             box-shadow: 0 1px 0 0 #041b260d, 0 0 0 1px #041b261a;            
-            width: 1280px;
+            max-width: 970px;
             padding: 16px;
-        }       
-
-        .left-col {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
+        }   
+        
+        .app-wrapper {
+            padding: 0 20px;
         }
-
-        .rigth-col {
+        
+        .main-info {
             display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            border-left: 1px solid #e5e5e5;
+            align-self: stretch;
         }
 
         /*====== Comments ======*/
 
-        .comments {           
-            width: 350px;            
+        .comments {                   
             border-radius: 10px;
             overflow: auto;
             transition: 1s;
@@ -65,16 +66,17 @@
 
         .comment-box {
             margin-bottom: 5px;
+            width: 300px;
         }
 
         .comment-input {
             margin-top: 15px;
         }
 
-        /* .comments.collapsed {
-            max-height: 8px;
-            overflow: hidden;
-        }        */
+        .comment-text {
+            padding-left: 5px;
+        }
+
 
         /*====== Header ======*/
 
@@ -85,16 +87,23 @@
             border-bottom: 1px solid #e5e5e5;
         }
 
-        .header-left {           
-            min-height: 15vh;
-            border-bottom: 1px solid #e5e5e5;
-            padding: 0 20px;
+        .header {
+            display: flex;
+            align-self: stretch;
         }
 
-        .header-rigth {           
-            min-height: 15vh;
-            padding: 0 20px;
+        .user-info {   
+            flex: 2; 
+            padding: 10px;
             border-bottom: 1px solid #e5e5e5;
+            border-right: 1px solid #e5e5e5;
+            margin-right: 1px;
+        }
+
+        .user-contacts {  
+            flex: 1;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 10px;
         }
 
         /*====== Sections ======*/
@@ -105,12 +114,13 @@
 
         .sections-left {
             flex: 2;
-            padding: 20px;
+            padding: 10px;
         }
 
         .sections-rigth {
             flex: 1;
-            padding: 20px;
+            padding: 10px;
+            border-left: 1px solid #e5e5e5;
         }
 
         /*====== Navigation ======*/
@@ -121,20 +131,17 @@
             left: 0;
             background-color: #cbe6fc;
             width: 100%;
-            z-index: 5;
-        }    
-        
-        .columns-wrapper {
-            min-width: 1200px;
             margin: 0 auto;
-            padding: 16px;            
-        }
-
+            padding: 16px;
+            min-height: 40px; 
+           
+        }            
+       
         .navi-menu {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 80px;
+            
         }
 
         .search {
@@ -163,6 +170,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 100px;
         }       
 
         .input-box {           
@@ -182,7 +190,6 @@
         .form-box {
             display: flex;
             flex: 1;
-            padding: 0 20px;           
         }
 
         .textarea-custom,
@@ -192,6 +199,10 @@
             border: 1px solid #92ccfc;
             border-radius: 5px;
             padding: 5px;
+        }
+
+        .input-year {
+            min-width: 100px;
         }
         
         .year,
@@ -219,7 +230,8 @@
 
         .label {
             color: #999;
-            font-size: 0.9rem;            
+            font-size: 0.9rem; 
+            min-width: 150px;           
         }
 
         .year-form,
@@ -232,14 +244,13 @@
         }
 
         .year-form {
-            max-width: 15%;
+            max-width: 20%;
             margin-right: 20px;
         }
         
         .textarea-custom {           
             margin-right: 15px;
             width: 90%; 
-            height: 60px; 
             resize: none; 
         }
         /*====== Button ======*/
@@ -277,19 +288,25 @@
         /*======== Education =========*/
 
         .education {
-            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .education-name {
+            font-size: 1.2rem;
             font-weight: 700;
+            padding: 0 20px;
+            margin-bottom: 5px;
         }
 
         .education-faculty {
-            font-size: 1.1rem;
-            padding: 10px;
+            padding-left: 40px;
+            padding-right: 20px;
         }
  
         /*======= Competencies and Qualifications  ========*/
 
-        .competencies,
-        .qualifications {
+        .competencies-item,
+        .qualifications-item {
             margin-bottom: 15px;
             font-size: 1.1rem;            
             display: flex;
@@ -308,9 +325,7 @@
 
         .competencies-text,
         .qualifications-text  {            
-            flex: 3;
-            width: 705px;            
-            word-wrap: break-word;
+            flex: 3;                       
         }
         
         .qualifications-course  {            
@@ -319,7 +334,7 @@
         }
         
         .icon-del {
-            color: #fff;
+            color: #F0F8FF;
             padding: 0 20px;            
             align-self: center;
         }
@@ -355,7 +370,7 @@
         /*======= Birthday =======*/
 
         .birthday {            
-            margin: 18px 0;            
+            margin-top: 18px;            
         }
         
         .age {
@@ -372,96 +387,47 @@
   
         @media screen and (max-width: 1024px) {
 
-            #app {
-                width: 944px; 
+            #app,
+            .main-info,
+            .header {               
                 flex-direction: column;                             
+            }  
+
+            .sections-rigth {
+                border-top: 1px solid #e5e5e5;
+                border-left: 0;
             }
 
-            .columns-wrapper {
-                min-width: 900px;
+            .user-info {
+                border-right: 0;
+                margin-right: 0;
             }
-           
-            .comments {
-                width: 100%;
-            } 
-
-            .rigth-col {               
-                border-left: 0 solid #fffdfd;
-            }          
+            
+            .comment-box {
+                width: auto;
+            }
+                   
+            
         }
-
-        @media screen and (max-width: 768px) {
-
-            #app {            
-               width: 748px;               
-            } 
-
-            .columns-wrapper {
-                min-width: 700px;
-            }
-        }
-
-        @media screen and (max-width: 544px) {
-
-            #app { 
-                width: 500px; 
-                margin: 190px auto 20px auto;               
-            }
-
-            .search,
-            .navi-menu {
-                flex-direction: column;
-            }
-          
-            .search-input {
-                margin-bottom: 5px;
-            }
-
-            .searchBtn {
-                text-align: center;
-                align-self: stretch;
-            }
-
-            .columns-wrapper {                          
-                height: 180px;
-            }
-
-            .first {               
-                flex-direction: column; 
-                align-items: stretch;
-            }
-
-            .image {
-              width: 150px;
-              height: auto;
-            }
-        }
-       
+         
     </style>
 </head>
 
 <body>
     <!-- Nav-menu -->
     <header class="navi-wrapper">
-        <div class="columns-wrapper">
-            <div class="navi-menu">
-                <a href="" class="logo-wrapper" href="/">
-                    <div class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" class="image" /></div>
-                </a>
-                <div class="search">
-                    <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
-                    <div class="searchBtn" onclick="search()">Найти</div>
-                </div>
+        <div class="navi-menu">               
+            <div class="search">
+                <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
+                <div class="searchBtn" onclick="search()">Найти</div>
             </div>
         </div>
     </header>
 
-
-    <main id="app"> 
-        
-        <!-- Left column -->
-        <div class="left-col">
-            <div class="header-left">
+    <div class="app-wrapper">
+        <div id="app">             
+            
+            <div class="header">
                 <div class="user-info">
                     <h1>{{fullname}}</h1>
                     <h3>{{position}}</h3>
@@ -475,76 +441,75 @@
                         <span class="age">{{ age }} лет</span>
                     </div>
                 </div>
-            </div>
-            <div class="sections-left">
-                <section>
-                    <h2>Образование</h2>
-                    <div class="education"><!--🎓&nbsp;-->{{education}}</div>
-                    <div class="education-faculty">{{faculty}}</div>
-                </section>
-                <section>
-                    <h2>Навыки</h2>                                              
-                        <div v-for="e in competentions" class="competencies">
-                            <div class="marker">-</div>
-                            <div class="competencies-text">{{ e }}</div>                                
-                            <div class="icon-del">x</div>
-                        </div>                    
-                    <input-block model="competentions" />
-                </section>
-                <section>
-                    <h2>Повышение квалификации, курсы</h2>                    
-                        <div v-for="e in qualifications" class="qualifications">
-                            <div class="qualifications-year">{{e.year}}</div>
-                            <div class="qualifications-text">
-                                <span class="qualifications-course">{{ e.learning_center }}</span>                               
-                                <span>{{ e.course }}&nbsp;</span> 
-                            </div>
-                            <div class="icon-del">x</div>
-                        </div>                    
-                    <input-form-block model="qualifications" />
-                </section>
-            </div>
-
-        </div>
-
-        <!-- Rigth column -->
-        <div class="rigth-col">
-            <div class="header-rigth">
                 <div class="user-contacts">
-                    <div class="contacts"><span class="title">Служебный телефон:</span>&nbsp;1111</div>
-                    <div class="contacts"><span class="title">Моб. телефон:</span>&nbsp;+7 (111) 111-11-11</div>
+                    <div class="contacts"><span class="title">Служебный телефон:</span>&nbsp;{{ office_phone }}</div>
+                    <div class="contacts"><span class="title">Моб. телефон:</span>&nbsp;{{ mobile_phone }}</div>
                     <div class="contacts"><span class="title">E-mail:</span>&nbsp;
-                        <a href="mailto:vtc@vtc-service.ru" target="_blank">vtc@vtc-service.ru</a>
+                        <a href="mailto:${email}" target="_blank">{{ email }}</a>
                     </div>
-                    <div class="contacts"><span class="title">Город:</span>&nbsp;Москва</div>
-                    <div class="contacts"><span class="title">Руководитель:</span>&nbsp;Иванов Иван Иванович</div>
+                    <div class="contacts"><span class="title">Город:</span>&nbsp;{{ city }}</div>
+                    <div class="contacts"><span class="title">Руководитель:</span>&nbsp;{{ boss }}</div>
                 </div>
             </div>
-            <div class="sections-rigth">
-                <section class="additional-info">
-                    <h3>Дополнительная информация</h3>
-                    <div>
-                        <span class="title"><!--🚗&nbsp;-->Личный автомобиль:</span> 
-                        <span class="info-text">{{ haveCar }}</span>
-                    </div>
-                    <div>
-                        <span class="title">Права категории:</span>
-                        <span class="info-text">{{ driver_license }}</span>
-                    </div>
-                </section>
-                <section class="comments-info">
-                    <h3>Комментарии</h3>
-                    <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
-                        <div v-for="e in comments" class="comment-box">
-                            <small>{{ e.author }}&nbsp;{{ e.date }}</small>
-                            <div>&nbsp;{{ e.text }}</div>                        
-                        </div>
-                        <input-block model="comments" class="comment-input"/>                   
+
+        
+            <div class="main-info">
+                <!-- Section left -->
+                <div class="sections-left">
+                    <section class="education">
+                        <h2>Образование</h2>
+                        <div class="education-name">{{education}}</div>
+                        <div class="education-faculty">{{faculty}}</div>
                     </section>
-                </section>
+                    <section class="competencies">
+                        <h2>Навыки</h2>                                              
+                            <div v-for="e in competencies_list" class="competencies-item">
+                                <div class="marker">-</div>
+                                <div class="competencies-text">{{ e }}</div>                                
+                                <div class="icon-del">x</div>
+                            </div>                    
+                        <input-block model="competencies_list" />
+                    </section>
+                    <section class="qualifications">
+                        <h2>Повышение квалификации, курсы</h2>                    
+                            <div v-for="e in qualifications_list" class="qualifications-item">
+                                <div class="qualifications-year">{{e.year}}</div>
+                                <div class="qualifications-text">
+                                    <span class="qualifications-course">{{ e.learning_center }}</span>                               
+                                    <span>{{ e.course }}&nbsp;</span> 
+                                </div>
+                                <div class="icon-del">x</div>
+                            </div>                    
+                        <input-form-block model="qualifications_list" />
+                    </section>
+                </div>
+            
+                <div class="sections-rigth">
+                    <section class="additional-info">
+                        <h3>Дополнительная информация</h3>
+                        <div>
+                            <span class="title">Личный автомобиль:</span> 
+                            <span class="info-text">{{ haveCar }}</span>
+                        </div>
+                        <div>
+                            <span class="title">Права категории:</span>
+                            <span class="info-text">{{ driver_license }}</span>
+                        </div>
+                    </section>
+                    <section class="comments-info">
+                        <h3>Комментарии</h3>
+                        <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
+                            <div v-for="e in comments_list" class="comment-box">
+                                <small>{{ e.author }}:&nbsp;{{ e.date_comment }}</small>
+                                <div class="comment-text">{{ e.text }}</div>                        
+                            </div>
+                            <input-block model="comments_list" class="comment-input"/>                   
+                        </section>
+                    </section>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- Component textarea -->
     <component style="display: none;" id="input-block-tpl">
@@ -630,11 +595,11 @@
             $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
             const model = $(e).data('model')
             const value = $('textarea', e.parentElement).val()
-            if('comments' === model) {                
+            if('comments_list' === model) {                
                 let item = {
                     author:   'hr',
                     text: value,
-                    date: new Date().toLocaleDateString()
+                    date_comment: new Date().toLocaleDateString()
                 }
                 if (item) data[model].push(item)
             } else if (value) data[model].push(value)
@@ -677,22 +642,13 @@
             position: "Руководитель административно-хозяйственного отдела",
             education: "Белгородский государственный технологический университет им. В.Г. Шухова",
             faculty: "Экономика и управление на предприятии промышленности строительных материалов",
+            office_phone: '1234',
+            mobile_phone: '+7 (111) 111-11-11',
+            city: 'Москва',
+            email: 'vtc@vtc-service.ru',
+            boss: 'Иванов Иван Иванович',           
 
-            comments: [{
-                    text: 'раз коммент',
-                    author: 'hr'
-                },
-                {
-                    text: 'два коммент',
-                    author: 'начальник'
-                },
-                {
-                    text: 'три коммент',
-                    author: 'ещё кто-то'
-                },
-            ],
-
-            competentions: [
+            competencies_list: [
                 'Эксплуатация и администрирование телефонной станции AVAYA, заключение договоров с ПАО МГТС. Техническое обслуживание центра,проверка работоспособности слаботочных систем.',
                 'Avaya CM CCE CMS BCMS APC AES EMC',
                 'Asterisk',
@@ -701,7 +657,7 @@
                 'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
             ],
 
-            qualifications: [{
+            qualifications_list: [{
                     year: 2020,
                     learning_center: 'Колледж предпринимательства',
                     course: 'CISCO CCNA',
@@ -740,14 +696,16 @@
             ], 
 
            
-            comments: [
+            comments_list: [
                 {
                     author: 'hr',
-                    text: 'Очень сильный кандидат'
+                    text: 'Очень сильный кандидат',
+                    date_comment: '10.10.2020'
                 },
                 {
                     author: 'Руководитель',
-                    text: 'Высокие знания в  поиске и устранении аварий на сети ШПД'
+                    text: 'Высокие знания в  поиске и устранении аварий на сети ШПД',
+                    date_comment: '15.04.2021'
                 }
             ],
            
