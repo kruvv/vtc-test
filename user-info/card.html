@@ -152,6 +152,22 @@
         .search-input {
             min-width: 300px;
         }
+        
+        .searchBtn {
+            background: #3fa8fb;
+            color: rgb(255, 255, 255);           
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .searchBtn {  
+            padding: 10px 30px;
+        }
+              
+        .searchBtn:hover {
+            background-color: #0583e7;
+        }
 
         /*====== Input ======*/
         
@@ -181,11 +197,6 @@
 
         /*======== Form ============*/        
                
-        .form__title-item {            
-            display: flex;            
-            flex-wrap: wrap;
-        }
-
         .textarea-box,
         .form-box {
             display: flex;
@@ -253,23 +264,8 @@
             width: 90%; 
             resize: none; 
         }
-        /*====== Button ======*/
-                      
-        .searchBtn {
-            background: #3fa8fb;
-            color: rgb(255, 255, 255);           
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .searchBtn {  
-            padding: 10px 30px;
-        }
-              
-        .searchBtn:hover {
-            background-color: #0583e7;
-        }
+
+        /*====== Button ======*/ 
 
         .plus-btn {            
             align-self: center;
@@ -291,22 +287,22 @@
             margin-bottom: 20px;
         }
 
-        .education-name {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .education .name {
+            font-size: 1.1rem;
+            font-weight: 600;
             padding: 0 20px;
             margin-bottom: 5px;
         }
 
-        .education-faculty {
+        .education .faculty {
             padding-left: 40px;
             padding-right: 20px;
         }
  
         /*======= Competencies and Qualifications  ========*/
 
-        .competencies-item,
-        .qualifications-item {
+        .competencies .item,
+        .qualifications .item {
             margin-bottom: 15px;
             font-size: 1.1rem;            
             display: flex;
@@ -314,21 +310,21 @@
         }
         
         .marker,
-        .qualifications-year {
+        .qualifications .q-year {
             padding: 0 20px;            
             align-self: center;
         }
 
-        .qualifications-year {
+        .qualifications .q-year {
             font-size: 0.9rem;
         }
 
-        .competencies-text,
-        .qualifications-text  {            
+        .competencies .text,
+        .qualifications .text  {            
             flex: 3;                       
         }
         
-        .qualifications-course  {            
+        .qualifications .q-course  {            
             font-weight: 700;
             padding-right: 15px;
         }
@@ -340,17 +336,17 @@
         }
 
         .marker:hover,
-        .competencies-text:hover,
-        .qualifications-text:hover, 
-        .competencies-text:hover~.marker,
-        .competencies-text:hover~.icon-del,
-        .qualifications-text:hover~.icon-del {
+        .competencies .text:hover,
+        .qualifications .text:hover, 
+        .competencies .text:hover~.marker,
+        .competencies .text:hover~.icon-del,
+        .qualifications .text:hover~.icon-del {
             color: #777575;
             transition: 0.3s;   
         }
                      
         .icon-del:hover,
-        .icon-del:hover~.competencies-text {
+        .icon-del:hover~.competencies .text {
             color: #777575;            
             transition: 0.3s;   
             cursor: pointer;                
@@ -381,8 +377,7 @@
             font-size: 0.9rem;
         }
        
-       
-       
+              
         /*============= Media ============*/
   
         @media screen and (max-width: 1024px) {
@@ -433,11 +428,11 @@
                     <h3>{{position}}</h3>
                     <div class="department">
                         <span class="title">Департамент:</span>
-                        <span class="department-text">&nbsp;{{department}}</span>
+                        <span class="text">&nbsp;{{department}}</span>
                     </div>
                     <div class="birthday">
                         <span class="title">Дата рождения:</span>
-                        <span class="bithday-field"></span>&nbsp;{{birthday}}</span>
+                        <span class="bithday-field">&nbsp;{{birthday}}</span>
                         <span class="age">{{ age }} лет</span>
                     </div>
                 </div>
@@ -458,25 +453,25 @@
                 <div class="sections-left">
                     <section class="education">
                         <h2>Образование</h2>
-                        <div class="education-name">{{education}}</div>
-                        <div class="education-faculty">{{faculty}}</div>
+                        <div class="name">{{education}}</div>
+                        <div class="faculty">{{faculty}}</div>
                     </section>
                     <section class="competencies">
                         <h2>Навыки</h2>                                              
-                            <div v-for="e in competencies_list" class="competencies-item">
+                            <div v-for="e in competencies_list" class="item">
                                 <div class="marker">-</div>
-                                <div class="competencies-text">{{ e }}</div>                                
+                                <div class="text">{{ e }}</div>                                
                                 <div class="icon-del">x</div>
                             </div>                    
                         <input-block model="competencies_list" />
                     </section>
                     <section class="qualifications">
                         <h2>Повышение квалификации, курсы</h2>                    
-                            <div v-for="e in qualifications_list" class="qualifications-item">
-                                <div class="qualifications-year">{{e.year}}</div>
-                                <div class="qualifications-text">
-                                    <span class="qualifications-course">{{ e.learning_center }}</span>                               
-                                    <span>{{ e.course }}&nbsp;</span> 
+                            <div v-for="e in qualifications_list" class="item">
+                                <div class="q-year">{{e.year}}</div>
+                                <div class="text">
+                                    <span class="q-course">{{ e.learning_center }}</span>                               
+                                    <span>{{ e.course }}</span> 
                                 </div>
                                 <div class="icon-del">x</div>
                             </div>                    
@@ -489,11 +484,11 @@
                         <h3>Дополнительная информация</h3>
                         <div>
                             <span class="title">Личный автомобиль:</span> 
-                            <span class="info-text">{{ haveCar }}</span>
+                            <span class="text">{{ haveCar }}</span>
                         </div>
                         <div>
                             <span class="title">Права категории:</span>
-                            <span class="info-text">{{ driver_license }}</span>
+                            <span class="text">{{ driver_license }}</span>
                         </div>
                     </section>
                     <section class="comments-info">
@@ -503,7 +498,7 @@
                                 <small>{{ e.author }}:&nbsp;{{ e.date_comment }}</small>
                                 <div class="comment-text">{{ e.text }}</div>                        
                             </div>
-                            <input-block model="comments_list" class="comment-input"/>                   
+                            <input-block model="comments_list" class="comment-input" />                   
                         </section>
                     </section>
                 </div>
@@ -527,7 +522,7 @@
                         wrap="hard"     
                         >
                     </textarea>                   
-                    <span class="plus-btn" onclick="clickAdd(this)" :data-model="model" >
+                    <span class="plus-btn" onclick="clickAdd(this)" :data-model="model">
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                             <path
                                 d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
@@ -535,7 +530,7 @@
                     </span>
                 </div>
             </div>
-            <div class="plus-btn" onclick="clickPlus(this);">
+            <div class="plus-btn" onclick="clickPlus(this)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path
                         d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
@@ -736,3 +731,5 @@
 </body>
 
 </html>
+
+

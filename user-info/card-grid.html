@@ -16,48 +16,7 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: sans-serif;
-            background-color: #f2f4f3;
-        }
-
-        .navi-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #cbe6fc;
-            width: 100%;
-            z-index: 5;
-        }
-        .columns-wrapper {
-            display: flex;
-            justify-content: space-between;            
-            margin: 0 40px;
-        }
-        .navi-menu {
-           display: flex;
-           align-self: center;
-        }
-        .search {
-            display: flex;
-            align-items: center;
-        }
-        .search-input {
-            padding: 10px;
-        }
-
-        .container {
-            display: grid;
-            border: 1px solid red;
-            margin-top: 100px;
-            /* height: 100vh; */
-            justify-items: stretch;
-        }
-        .item {
-            border: 1px solid green;
-            /* width: 100px;
-            height: 100px; */
-        }
+      
      
     </style>
 </head>
@@ -65,17 +24,12 @@
 <body>
     <!-- Nav-menu -->
     <div class="navi-wrapper">
-        <div class="columns-wrapper">
-            <a href="" class="logo-wrapper" href="/">
-                <div class="logo-vtc"><img src="./img/icon/Лого_ВТК-С(1).png" alt="logo" class="image" /></div>
-            </a>
             <div class="navi-menu">                
                 <div class="search">
                     <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
                     <div class="searchBtn" onclick="search()">Найти</div>
                 </div>
             </div>
-        </div>
     </div>
     <div class="container">
         <div class="block1 item">1</div>
