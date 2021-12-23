@@ -16,33 +16,55 @@
             box-sizing: border-box;
         }
 
+        .container {
+            width: 900px;
+            height: 60vh;
+            display: grid;
+            grid-template-columns: 40px repeat(6, 1fr) 20px;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        .item {
+            /* width: 100px;
+            height: 100px; */
+            border: 3px solid #aaa;
+            background-color: rgb(210, 243, 238);
+
+        }
+
+
       
      
     </style>
 </head>
 
 <body>
-    <!-- Nav-menu -->
-    <div class="navi-wrapper">
-            <div class="navi-menu">                
-                <div class="search">
-                    <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
-                    <div class="searchBtn" onclick="search()">Найти</div>
-                </div>
-            </div>
-    </div>
+   
     <div class="container">
         <div class="block1 item">1</div>
         <div class="block2 item">2</div>
         <div class="block3 item">3</div>
         <div class="block4 item">4</div>
+        <div class="block5 item">5</div>
+        <div class="block6 item">6</div>
+        <div class="block7 item">7</div>
+        <div class="block8 item">8</div>
+        <div class="block9 item">9</div>
     </div>
 
 
     
+ <!-- Nav-menu 
+ <div class="navi-wrapper">
+    <div class="navi-menu">                
+        <div class="search">
+            <input type="search" name="text-search" class="search-input" placeholder="Может поищем что-нибудь...">
+            <div class="searchBtn" onclick="search()">Найти</div>
+        </div>
+    </div>
+</div>
 
-
-    <content id="app"> 
+ <!--   <content id="app"> 
         <div class="left-col">
             <div class="header__left">
                 <div class="user-info">
@@ -63,7 +85,7 @@
                 <section>
                     <h2>Образование</h2>
                     <div class="education">
-                        <!--🎓&nbsp;-->{{education}}</div>
+                        {{education}}</div>
                     <div class="education-faculty">{{faculty}}</div>
                 </section>
                 <section>
@@ -84,9 +106,9 @@
                             <div class="qualifications__year">{{e.year}}</div>
                             <div class="qualifications__text">
                                 <span class="qualifications__course">{{ e.learning_center }}</span>
-                                <!-- <span>{{ e.city }}</span><br> -->
+                                
                                 <span>{{ e.course }}&nbsp;</span>                                
-                                <!-- <span>{{ e.diploma }}.</span>                                 -->
+                                                             
                             </div>
                             <div class="qualifications__icon-del">x</div>
                         </div>
@@ -116,7 +138,7 @@
                 <section class="additional__information">
                     <h3>Дополнительная информация</h3>
                     <div><span class="information__title">
-                        <!--🚗&nbsp;-->Личный автомобиль:</span> Да
+                        Личный автомобиль:</span> Да
                     </div>
                     <div><span class="information__title">Права категории:</span> B</div>
                 </section>
@@ -131,7 +153,7 @@
             </div>
         </div>
     </content>
-
+-->
     <!-- Component textarea -->
     <component style="display: none;" id="input-block-tpl">
         <div class="input-block">

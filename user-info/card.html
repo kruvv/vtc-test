@@ -475,7 +475,7 @@
                                 </div>
                                 <div class="icon-del">x</div>
                             </div>                    
-                        <input-form-block model="qualifications_list" />
+                        <input-form-block model="qualifications" />
                     </section>
                 </div>
             
@@ -493,7 +493,7 @@
                     </section>
                     <section class="comments-info">
                         <h3>Комментарии</h3>
-                        <section v-if="hasCommentsPerm" class="comments collapsed" onclick="$(this).toggleClass('collapsed')">
+                        <section v-if="hasCommentsPerm" class="comments" >
                             <div v-for="e in comments_list" class="comment-box">
                                 <small>{{ e.author }}:&nbsp;{{ e.date_comment }}</small>
                                 <div class="comment-text">{{ e.text }}</div>                        
@@ -522,7 +522,7 @@
                         wrap="hard"     
                         >
                     </textarea>                   
-                    <span class="plus-btn" onclick="clickAdd(this)" :data-model="model">
+                    <span class="plus-btn" onclick="click(this)" :data-model="model">
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                             <path
                                 d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
@@ -563,7 +563,7 @@
                                                 
                         </div>           
                     </form>                    
-                    <span class="plus-btn" onclick="clickAddForm(this)" :data-model="model" >
+                    <span class="plus-btn" onclick="click(this)" :data-model="model" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                             <path
                                 d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
@@ -586,35 +586,81 @@
             $('.input-box', e.parentElement).fadeIn()    
         }
 
-        function clickAdd(e) {
-            $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
-            const model = $(e).data('model')
-            const value = $('textarea', e.parentElement).val()
-            if('comments_list' === model) {                
+        function click(e) {
+            $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
+            const model = $(e).data('model') 
+            
+            if('comments_list' === model) { 
+                const value = $('textarea', e.parentElement).val()
                 let item = {
                     author:   'hr',
                     text: value,
                     date_comment: new Date().toLocaleDateString()
                 }
-                if (item) data[model].push(item)
+                if (item) data[model].push(item) 
+                
+            } 
+            if ('competencies_list' === model) {
+                const value = $('textarea', e.parentElement).val()
+                if (value) data[model].push(value)
+            }
+
+            if ('qualifications_list' === model) {
+                const year = +$('.input-year', e.parentElement).val()
+                if (year < 1950 || year > 2021) return console.log("Не правильно указан год обучения")  
+                const learning_center = $('.input-learning_center', e.parentElement).val()
+                const course = $('.input-course', e.parentElement).val()
+                const item = {
+                    year,
+                    learning_center,
+                    course
+                }
+                if (item) {
+                    const itemToSave = prepairingItemToSave(item)
+                    data[model].push({text: itemToSave})
+                    resetForm(e)
+                }
+            }
+        }
+
+        function clickAdd(e) {
+            $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
+            const model = $(e).data('model')
+            const value = $('textarea', e.parentElement).val()
+            if('comments_list' === model) { 
+                let item = {
+                    author:   'hr',
+                    text: value,
+                    date_comment: new Date().toLocaleDateString()
+                }
+                if (item) data[model].push(item) 
+                
             } else if (value) data[model].push(value)
 
-           
+        }
+
+        function prepairingItemToSave(el) {
+            const result = el.year + '\n' + el.learning_center + '\n' + el.course
+            return result            
         }
 
         function clickAddForm(e) {
             $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-form-block').find('.plus-btn').show())
             const model = $(e).data('model')            
-            const year = $('.input-year', e.parentElement).val()
+            const year = +$('.input-year', e.parentElement).val()
+            if (year < 1950 || year > 2021) return console.log("Не правильно указан год обучения")  
             const learning_center = $('.input-learning_center', e.parentElement).val()
             const course = $('.input-course', e.parentElement).val()
-            let item = {
+            const item = {
                 year,
                 learning_center,
                 course
             }
-            if (item) data[model].push(item)
-            resetForm(e)
+            if (item) {
+                const itemToSave = prepairingItemToSave(item)
+                data[model].push({text: itemToSave})
+                resetForm(e)
+            }
         }
 
         function resetForm(form) {
@@ -652,43 +698,13 @@
                 'Поиск и устранение аварий на сети ШПД, сварка оптоволокна, снятие рефлекторам, прокладка и монтаж оптического кабеля.абота со сварочным оборудованием японского (Furukawa (Fitel), Fujikura и Sumitomo) и корейского (Inno, Swift) производства, измерительным оборудованием (Exfo, Yokogawa, JDCU, Fluke). Знание технологий 3М, Tyco, GPON и оптического СКС.'
             ],
 
-            qualifications_list: [{
-                    year: 2020,
-                    learning_center: 'Колледж предпринимательства',
-                    course: 'CISCO CCNA',
-                    diploma: 'Свидетельство',
-                    city: 'г. Москва'
-                },
-                {
-                    year: 2016,                    
-                    learning_center: 'Учебный центр ОАО"Инфотекс"',
-                    course: 'Vipnet админстрирование',
-                    diploma: 'Свидетельство',
-                    city: 'г. Москва'
-                },
-                {
-                    year: 2012,
-                    learning_center: 'Специалист при МВТУ им.Баумана',
-                    course: 'UNIX введение в администрирование',
-                    diploma: 'Свидетельство',
-                    city: 'г. Москва'
-                },
-                {
-                    year: 2012,
-                    learning_center: 'Комптек',
-                    course: 'Credentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x)',
-                    diploma: 'Свидетельство',
-                    city: 'г. Санкт-Петербург'
-                },
-                {
-                    year: 2010,
-                    text: 'Vipnet админстрирование: , ',
-                    learning_center: 'Учебный центр ОАО"Инфотекс-Технолоджи"',
-                    course: 'Администрирование систем гражданского шифрования',
-                    diploma: 'Свидетельство',
-                    city: 'г. Новосибирск'
-                },
-            ], 
+            qualifications: [
+                {text: '2020\nКолледж предпринимательства\nCISCO CCNA'},
+                {text: '2016\nУчебный центр ОАО"Инфотекс\nVipnet админстрирование'},
+                {text: '2012\nСпециалист при МВТУ им.Баумана\nUNIX введение в администрирование'},
+                {text: '2014\nКомптек\nCredentialed issued in ACIS - Avaya Aura® Communication Manager and CM Messaging – Embedded (R6.x)'},
+                {text: '2010\nУчебный центр ОАО"Инфотекс-Технолоджи"\nАдминистрирование систем гражданского шифрования'}
+            ],
 
            
             comments_list: [
@@ -704,6 +720,10 @@
                 }
             ],
            
+            // comments: [
+            //     {text: 'hr\nОчень сильный кандидат\n10.10.2020'},
+            //     {text: 'Руководитель\nВысокие знания в  поиске и устранении аварий на сети ШПД\n15.04.2021'}
+            // ]
 
         }
 
@@ -724,6 +744,20 @@
             computed: {
                 haveCar: function () {
                     return this.auto  ? 'Да' : 'Нет' 
+                },
+                qualifications_list: function () {
+                    const list = []
+                    for (el of this.qualifications) {
+
+                        let sa = el.text.split('\n')
+                        const qualification = {}
+                        qualification.year = sa[0]
+                        qualification.learning_center = sa[1]
+                        qualification.course = sa[2]
+
+                        list.push(qualification)                        
+                    }
+                    return list                    
                 }
             }
         })

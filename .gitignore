@@ -8,3 +8,5 @@ yarn-error.log
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
+
+/user-info/float.html
