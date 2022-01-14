@@ -204,6 +204,16 @@
 
         /*======== Form ============*/
 
+        .carinfo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .addinfo-box {
+            justify-content: space-between;
+        }
+
+        .addinfo-box,
         .textarea-box,
         .form-box {
             display: flex;
@@ -384,6 +394,9 @@
             font-size: 0.9rem;
         }
 
+        .driver_license {
+            display: none;
+        }
 
         /*============= Media ============*/
 
@@ -488,14 +501,22 @@
                 <div class="sections-rigth">
                     <section class="additional-info">
                         <h3>Дополнительная информация</h3>
-                        <div>
-                            <span class="title">Личный автомобиль:</span>
-                            <span class="text">{{ hasCar }}</span>
-                        </div>
-                        <div>
-                            <span class="title">Права категории:</span>
-                            <span class="text">{{ driver_license }}</span>
-                        </div>
+                        <section class="comments">
+                            
+                            
+                            <div  class="comment-box">
+                                <span class="title">Личный автомобиль:</span>
+                                <span>{{ addinfo.hascar ? "Да" : "Нет" }}</span><br />
+                                <span class="title">Права категории:</span>                                
+                                <span v-for="j in addinfo.driverlicense" v-if="j.val === true" class="comment-text">
+                                   {{ j.category }}                                  
+                                </span>
+                                
+                            </div>
+                            <input-addinfo-block model="addinfo" class="comment-input" />
+                        </section>
+
+ 
                     </section>
                     <section class="comments-info">
                         <h3>Комментарии</h3>
@@ -578,15 +599,83 @@
         </div>
     </component>
 
+    <component style="display: none;" id="input-addinfo-tpl">
+        <div class="input-block">
+            <div class="input-box ">
+                <div class="addinfo-box">
+                    <div class="carinfo" >
+                        <div class="blockcar">
+                            <label for="car">Личный автомобиль:</label>
+                            <input type="checkbox" id="car"  />
+                        </div>
+                        <div class="blocklicense">
+                            <span >Права категории:</span>
+                            <div class="categories" >
+                                <label for="a">A</label>
+                                <input type="checkbox" id="a"  />
+                                <label for="b">B</label>
+                                <input type="checkbox" id="b"    />
+                                <label for="c">C</label>
+                                <input type="checkbox" id="c"  />
+                                <label for="d">D</label>
+                                <input type="checkbox" id="d"  />
+                                <label for="e">E</label>
+                                <input type="checkbox" id="e"  />
+                            </div>
+                        </div>
+                    </div>
+                    <span class="plus-btn" onclick="clickAdd(this)" :data-model="model">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="plus-btn" onclick="clickPlus(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                </svg>
+            </div>
+        </div>
+    </component>
+
     <script type="text/javascript">
         function clickPlus(e) {
             $(e).hide()
             $('.input-box', e.parentElement).fadeIn()
         }
 
+        // function clickPlusInfo(e) {
+        //     $(e).hide()
+        //     $('.driver_license', e.parentElement).fadeIn()
+        // }
+
+        // function closeSelect(e) {
+        //     $(e).fadeOut(400, _ => $(e).closest('.driver_license').find('.plus-btn').show())
+        // }
+
         function clickAdd(e) {
             $(e.parentElement.parentElement).fadeOut(400, _ => $(e).closest('.input-block').find('.plus-btn').show())
             const model = $(e).data('model')
+
+            if ('addinfo' === model) {
+                // debugger;
+                const addinfo = { 
+                    hascar: $('input#car', e.parentElement)[0].checked,
+                    driverlicense: [
+                        {category: 'A', val: $('input#a', e.parentElement)[0].checked},
+                        {category: 'B', val: $('input#b', e.parentElement)[0].checked},
+                        {category: 'C', val: $('input#c', e.parentElement)[0].checked},
+                        {category: 'D', val: $('input#d', e.parentElement)[0].checked},
+                        {category: 'E', val: $('input#e', e.parentElement)[0].checked},
+                    ]
+                }
+                // debugger;
+                // if (license.lenght > 0) 
+                data[model] = addinfo
+            }
 
             if ('comments_list' === model) {
                 const value = $('textarea', e.parentElement).val()
@@ -639,8 +728,16 @@
             input_comp: '',
             birthday: '01 декабря 1974 года',
             age: 47,
-            car: false,
-            driver_license: 'B',
+            addinfo: {
+                hascar: false,
+                driverlicense: [
+                    {category: "A", val: false},
+                    {category: "B", val: true},
+                    {category: "C", val: true},
+                    {category: "D", val: false},
+                    {category: "E", val: true},
+                ]
+            },
             department: "Административно-хозяйственный отдел",
             fullname: "Акиньшина Любовь Валерьевна",
             position: "Руководитель административно-хозяйственного отдела",
@@ -709,13 +806,18 @@
             template: $('#input-form-tpl').html()
         })
 
+        Vue.component('input-addinfo-block', {
+            props: ['model'],
+            template: $('#input-addinfo-tpl').html()
+        })
+
         const app = new Vue({
             el: '#app',
             data,
             computed: {
-                hasCar: function () {
-                    return this.car ? 'Да' : 'Нет'
-                },
+                // hasCar: function () {
+                //     return this.car ? 'Да' : 'Нет'
+                // },
                 qualifications_list: function () {
                     const list = []
                     for (el of this.qualifications) {
