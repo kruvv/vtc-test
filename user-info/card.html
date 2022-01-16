@@ -502,21 +502,21 @@
                     <section class="additional-info">
                         <h3>Дополнительная информация</h3>
                         <section class="comments">
-                            
-                            
+
+
                             <div  class="comment-box">
                                 <span class="title">Личный автомобиль:</span>
                                 <span>{{ addinfo.hascar ? "Да" : "Нет" }}</span><br />
-                                <span class="title">Права категории:</span>                                
-                                <span v-for="j in addinfo.driverlicense" v-if="j.val === true" class="comment-text">
-                                   {{ j.category }}                                  
+                                <span class="title">Права категории:</span>
+                                <span v-for="j in addinfo.driverlicense" v-if="j.checked === true" class="comment-text">
+                                   {{ j.category }}
                                 </span>
-                                
+
                             </div>
                             <input-addinfo-block model="addinfo" class="comment-input" />
                         </section>
 
- 
+
                     </section>
                     <section class="comments-info">
                         <h3>Комментарии</h3>
@@ -603,10 +603,10 @@
         <div class="input-block">
             <div class="input-box ">
                 <div class="addinfo-box">
-                    <div class="carinfo" >
+                    <div class="carinfo" v-for="" >
                         <div class="blockcar">
                             <label for="car">Личный автомобиль:</label>
-                            <input type="checkbox" id="car"  />
+                            <input type="checkbox" id="car" />
                         </div>
                         <div class="blocklicense">
                             <span >Права категории:</span>
@@ -614,7 +614,7 @@
                                 <label for="a">A</label>
                                 <input type="checkbox" id="a"  />
                                 <label for="b">B</label>
-                                <input type="checkbox" id="b"    />
+                                <input type="checkbox" id="b"  />
                                 <label for="c">C</label>
                                 <input type="checkbox" id="c"  />
                                 <label for="d">D</label>
@@ -662,18 +662,18 @@
 
             if ('addinfo' === model) {
                 // debugger;
-                const addinfo = { 
+                const addinfo = {
                     hascar: $('input#car', e.parentElement)[0].checked,
                     driverlicense: [
-                        {category: 'A', val: $('input#a', e.parentElement)[0].checked},
-                        {category: 'B', val: $('input#b', e.parentElement)[0].checked},
-                        {category: 'C', val: $('input#c', e.parentElement)[0].checked},
-                        {category: 'D', val: $('input#d', e.parentElement)[0].checked},
-                        {category: 'E', val: $('input#e', e.parentElement)[0].checked},
+                        {category: 'A', checked: $('input#a', e.parentElement)[0].checked},
+                        {category: 'B', checked: $('input#b', e.parentElement)[0].checked},
+                        {category: 'C', checked: $('input#c', e.parentElement)[0].checked},
+                        {category: 'D', checked: $('input#d', e.parentElement)[0].checked},
+                        {category: 'E', checked: $('input#e', e.parentElement)[0].checked},
                     ]
                 }
                 // debugger;
-                // if (license.lenght > 0) 
+                // if (license.lenght > 0)
                 data[model] = addinfo
             }
 
@@ -731,11 +731,11 @@
             addinfo: {
                 hascar: false,
                 driverlicense: [
-                    {category: "A", val: false},
-                    {category: "B", val: true},
-                    {category: "C", val: true},
-                    {category: "D", val: false},
-                    {category: "E", val: true},
+                    {category: "A", checked: false},
+                    {category: "B", checked: true},
+                    {category: "C", checked: true},
+                    {category: "D", checked: false},
+                    {category: "E", checked: true},
                 ]
             },
             department: "Административно-хозяйственный отдел",
