@@ -398,6 +398,29 @@
             display: none;
         }
 
+        #a, #b, #c, #d {
+            padding-right: 5px;
+        }
+
+        .hascar,
+        .dlicense {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hascar .edit:hover,
+        .dlicense .edit:hover {
+            cursor: pointer;
+        }
+
+        .cartext {
+            display: flex;            
+        }
+
+        .carres {
+            padding-left: 10px;
+        }
+
         /*============= Media ============*/
 
         @media screen and (max-width: 1024px) {
@@ -505,12 +528,22 @@
 
 
                             <div  class="comment-box">
-                                <span class="title">Личный автомобиль:</span>
-                                <span>{{ addinfo.hascar ? "Да" : "Нет" }}</span><br />
-                                <span class="title">Права категории:</span>
-                                <span v-for="j in addinfo.driverlicense" v-if="j.checked === true" class="comment-text">
-                                   {{ j.category }}
-                                </span>
+                                <div class="hascar">
+                                    <div class="cartext">
+                                        <span class="title">Личный автомобиль:</span>
+                                        <span class="carres">{{ addinfo.hascar ? "Да" : "Нет" }}</span>
+                                    </div>
+                                    <span class="edit" onclick="clickPlus(this)" :data-model="model">edit</span>
+                                </div>
+                                <div class="dlicense">
+                                    <div class="cartext">
+                                        <span class="title">Права категории:</span>
+                                        <span v-for="j in addinfo.driverlicense" v-if="j.checked === true" class="carres comment-text">
+                                        {{ j.category }}
+                                        </span>
+                                    </div>
+                                    <span class="edit" onclick="clickPlus(this)" :data-model="model">edit</span>
+                                </div>
 
                             </div>
                             <input-addinfo-block model="addinfo" class="comment-input" />
@@ -606,7 +639,7 @@
                     <div class="carinfo" v-for="" >
                         <div class="blockcar">
                             <label for="car">Личный автомобиль:</label>
-                            <input type="checkbox" id="car" />
+                            <input type="checkbox" id="car" disabled />
                         </div>
                         <div class="blocklicense">
                             <span >Права категории:</span>
