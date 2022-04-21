@@ -1,57 +1,61 @@
-const fs = require("fs"); 
+const { time, timeEnd, log } = require("console")
+const fs = require("fs") 
+const path = require('path')
 
-fs.readFile('/home/kruvv/vtcservice/vtc-test/copytest/fullcities.json', 'utf8', (err, data) => {
-    if (err) throw err;
+path.dirname('/home/kruvv/vtcservice/vtc-test/copytest/')
+
+// Чтение файла
+time('Read file')
+fs.readFile(`${__dirname}/fullcities.json`, 'utf8', (err, data) => {
+    if (err) throw err
 
     const cities = JSON.parse(data)
+
     let res = {}
-    for (const el of cities) {
-        // if (Object.keys(el).includes("city")) { 
-            const key = `${el.city}, ${el.region} ${el.region_type}`           
-            res[key] = [el.geo_lat, el.geo_lon] 
-        // }
+    let dedupcount = {}
+    let dedup = {}
+
+    for (const a of cities) {        
+        for (const b of cities) {            
+            if (a.city.toLowerCase() === b.city.toLowerCase() && a.region.toLowerCase() !== b.region.toLowerCase()) { 
+
+                dedupcount[a.city] ? dedupcount[a.city] += 1 : dedupcount[a.city] = 1 
+
+                const region_type = b.region_type === 'Респ' ? '' : b.region_type
+                const keyB = (`${b.city}, ${b.region} ${region_type}`).trim()
+                dedup[keyB] = [b.geo_lat, b.geo_lon]     
+            }            
+        }
+        res[a.city] = [a.geo_lat, a.geo_lon]    
     }
 
-    Object.keys(res).sort().forEach(function(key) {
-        var value = res[key];
-        delete res[key];
-        res[key] = value;
-    });
+    for (const a of Object.keys(dedupcount)) {
+        for (const b of Object.keys(res)) {
+            if (a.toLowerCase() === b.toLowerCase()) delete res[b]
+        }
+    }
 
+    const result = Object.assign(res, dedup)
 
-    // console.log(data);
-    // console.log(res); 
-    writeResult(res)   
+    Object.keys(result).sort().forEach(function(key) {
+        let value = result[key]
+        delete result[key]
+        result[key] = value
+    })
 
-});
+    writeResult(result)  
+})
+timeEnd('Read file')
 
+// Запись файла
+time('Write file')
 function writeResult(coord) {
 
     let data = JSON.stringify(coord, null, '\t')
     
-    fs.writeFile('/home/kruvv/vtcservice/vtc-test/copytest/fullcitycoords.json', data, err => {
+    fs.writeFile(`${__dirname}/fullcitycoords.json`, data, err => {
         if (err) throw err
-        console.log('Data written to file')
+        log('Data written to file')
     })
 }
-
-
-// const readline = require('readline');
-
-// async function processLineByLine() {
-//   const fileStream = fs.createReadStream('/home/kruvv/vtcservice/vtc-test/copytest/fullcities.json');
-
-//   const rl = readline.createInterface({
-//     input: fileStream,
-//     crlfDelay: Infinity
-//   });
-//   // Note: we use the crlfDelay option to recognize all instances of CR LF
-//   // ('\r\n') in input.txt as a single line break.
-
-//   for await (const line of rl) {
-//     // Each line in input.txt will be successively available here as `line`.
-//     console.log(`Line from file: ${line}`);
-//   }
-// }
-
-// processLineByLine();
+timeEnd('Write file')
