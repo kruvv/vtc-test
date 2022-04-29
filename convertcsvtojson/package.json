@@ -1,0 +1,19 @@
+{
+  "name": "convertcsvtojson",
+  "version": "1.0.0",
+  "description": "Подготовка данных о городах России",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "csv",
+    "json",
+    "converter"
+  ],
+  "author": "vv.krupkin",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  }
+}

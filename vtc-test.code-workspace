@@ -15,8 +15,8 @@
 				"skipFiles": [
 					"<node_internals>/**"
 				],
-				"program": "/home/kruvv/vtcservice/vtc-test/copytest/handle.js",
-				"__workspaceFolder": "/home/kruvv/vtcservice/vtc-test/copytest"
+				"program": "/home/kruvv/vtcservice/vtc-test/convertcsvtojson/app.js",
+				"__workspaceFolder": "/home/kruvv/vtcservice/vtc-test/convertcsvtojson"
 			}
 		]
 	}
