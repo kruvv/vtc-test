@@ -11,12 +11,22 @@
 			{
 				"type": "pwa-node",
 				"request": "launch",
-				"name": "Launch Program",
+				"name": "convertcsvtojson",
 				"skipFiles": [
 					"<node_internals>/**"
 				],
 				"program": "/home/kruvv/vtcservice/vtc-test/convertcsvtojson/app.js",
 				"__workspaceFolder": "/home/kruvv/vtcservice/vtc-test/convertcsvtojson"
+			},
+			{
+				"type": "pwa-node",
+				"request": "launch",
+				"name": "form-questionnaire",
+				"skipFiles": [
+					"<node_internals>/**"
+				],
+				"program": "/home/kruvv/vtcservice/vtc-test/form-questionnaire/main.js",
+				"__workspaceFolder": "/home/kruvv/vtcservice/vtc-test/form-questionnaire"
 			}
 		]
 	}
