@@ -29,19 +29,19 @@ import { debug, text } from "svelte/internal";
 
 	function addChapter(e) {
 		if (!namechapter) return
-		let question = {
+		let chapter = {
 			title: namechapter,
 			questions: [
-			{
-				caption: '',
-				description: '',
-				control: '',
-				val: ''
-			}
-		]	
+				{
+					caption: '',
+					description: '',
+					control: '',
+					val: ''
+				}
+			]	
 		}
-		question = question
-		chapters.push(question)
+		chapter = chapter
+		chapters.push(chapter)
 		chapters = chapters
 		namechapter = ''
 	}
@@ -74,16 +74,16 @@ import { debug, text } from "svelte/internal";
 <main>
 	<div class="container">
 		<section class="header">
-			<h3>Мастер создания опросника</h3>
+			<h3>Мастер создания опроса</h3>
+			<input type="text" bind:value={caption}>
 			<hr>
 		</section>
 		<form on:submit|preventDefault={handleSubmit}>
-			<section class="theme">
-				<span>Название:</span>
-				<input type="text" bind:value={caption}>			
-				
-				
-			</section>
+			<!-- <section class="theme">
+				<label>Название:
+					<input type="text" bind:value={caption}>
+				</label>
+			</section> -->
 			<section class="chapter">
 				<section class="add-chapter">
 					<section>
@@ -94,47 +94,56 @@ import { debug, text } from "svelte/internal";
 						<input type="button" value="Добавить" on:click={addChapter} class="btn-chapter">					
 					</section>
 				</section>
-				{#each chapters as chapter}
+				<section class="addbox">
+					{#each chapters as chapter}
 
-					<!-- <section class="add-chapter"> -->
-						<!-- <input type="text" bind:value={chapter} disabled id={chapter}> -->
-						<!-- <span class="title">{chapter}</span>
-						<section>
-							<input type="button" value="Редактировать" on:click={editChapter} class="btn-chapter">
-							<input type="button" value="Удалить" on:click={delChapter} class="btn-chapter">
-						</section>
-					</section> -->
-					
-					<section class="add-question">
-						<section class="quest">
+						<!-- <section class="add-chapter"> -->
+							<!-- <input type="text" bind:value={chapter} disabled id={chapter}> -->
+							<!-- <span class="title">{chapter}</span>
 							<section>
-								<label>Вопрос:					
-									<!-- <input type="text" bind:value={question.caption}> -->
-								</label>
+								<input type="button" value="Редактировать" on:click={editChapter} class="btn-chapter">
+								<input type="button" value="Удалить" on:click={delChapter} class="btn-chapter">
 							</section>
-							<section>
-								<span>Доп. описание:</span>					
-								<!-- <textarea type="text" bind:value={question.description}></textarea> -->
+						</section> -->
+						
+						<section class="add-question">
+							<section class="quest">
+								<p style="margin: 5px; text-align:center;">Добавить вопрос к разделу:
+									<span style="font-weight:600;">{chapter.title}</span>
+								</p>
+								<section>
+									<label>Вопрос:					
+										<textarea style="width: 100%;" type="text" bind:value={chapter.questions.caption}></textarea>
+									</label>
+								</section>
+								<section>
+									<span>Доп. описание:</span>					
+									<textarea style="width: 100%;" type="text" bind:value={chapter.questions.description}></textarea>
+								</section>
+								<section>
+									<span>Тип поля ответа:</span>					
+									<select bind:value={selected} on:change={changeTypeField}>
+										{#each typefields as type}
+											<option value={type}>{type.text}</option>
+										{/each}
+									</select>
+								</section>
+								<section>
+									<span style="margin-right:6px;">Ответ:</span>					
+									<textarea style="width: 100%;" type="text" bind:value={chapter.questions.description}></textarea>
+								</section>
+								<section style="display:flex; align-items: center; justify-content:space-around">
+									<input class="add-quest" type="button" value="Добавить" on:click={addQuestion}>
+									<input class="clean" type="button" value="Очистить" on:click={delQuestion}>
+								</section>
 							</section>
-							<section>
-								<span>Тип поля ответа:</span>					
-								<select bind:value={selected} on:change={changeTypeField}>
-									{#each typefields as type}
-										<option value={type}>{type.text}</option>
-									{/each}
-								</select>
-							</section>
-						</section>
-						<section>
-							<input type="button" value="Добавить" on:click={addQuestion}>
-							<input type="button" value="Удалить" on:click={delQuestion}>
-						</section>
-					</section>	
-					
-				{/each}
+						</section>	
+						
+					{/each}
+				</section>
 			</section>
 
-			<button  type=submit>
+			<button  type=submit style="float:right; margin:5px;">
 				Записать
 			</button>
 		</form>
@@ -142,7 +151,7 @@ import { debug, text } from "svelte/internal";
 	<div class="view">
 		{#each chapters as chapter, i}
 			
-		 {@debug chapters}
+		 
 			<div class="result">
 				<p class="result-caption">{caption}</p>
 				<div class="employee">
@@ -163,6 +172,10 @@ import { debug, text } from "svelte/internal";
 					<!-- {#each  as }
 						
 					{/each} -->
+				</section>
+				<section>
+					<input class="res-btn" type="button" value="Далее >" />
+					<input class="res-btn" type="button" value="< Назад" />
 				</section>
 			</div>
 
@@ -187,6 +200,10 @@ import { debug, text } from "svelte/internal";
 		padding: 0;
 	}
 	
+	.add-quest {
+		background-color: #4ba94b;
+    	color: #fff;
+	}
 
 	.container {
 		display: flex;
@@ -245,15 +262,27 @@ import { debug, text } from "svelte/internal";
 
 	.res-chapter {
 		overflow: auto;
+		height: 330px;
+	}
+
+	.addbox {
+		height: 450px;
+		overflow: auto;
 	}
 
 	.add-question {
 		display: flex;
 		justify-content: space-between;
+		
 	}
 
 	.quest {
 		flex: 2;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin: 10px 5px;
+		padding: 5px;
+		background-color: #edf8fc;
 	}
 
 	.title {
@@ -262,8 +291,7 @@ import { debug, text } from "svelte/internal";
 	}
 	
 	.header {
-		background-color: yellow;
-		/* margin-bottom: 20px; */
+		text-align: center;
 	}
 
 	.btn-chapter {
@@ -282,12 +310,23 @@ import { debug, text } from "svelte/internal";
 		margin-bottom: 15px;
 	}
 
+	.res-btn {
+		float: right;
+    	margin: 0 5px;
+		border-radius: 3px;
+		background-color: #2c89f9;
+		color: #fff;
+	}
+	.res-btn:hover {
+		background-color: rgb(154, 186, 253);
+	}
+
 	hr {
-		margin: 0;
+		margin: 10px 6px;
 	}
 
 	.theme {
-		background-color: rgb(184, 184, 252);
+		/* background-color: rgb(184, 184, 252); */
 	}
 
 	h1 {
