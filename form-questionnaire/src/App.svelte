@@ -5,7 +5,42 @@ import { debug, text } from "svelte/internal";
 	let answer = '';
 	let caption = 'Название опроса'
 	let namechapter = ''
-	let chapters = []
+	let chapters = [
+		// {
+		// 	title: 'Название раздела 1',
+		// 	questions: [
+		// 			{
+		// 				caption: 'Первый вопрос',
+		// 				description:  'Описание к вопросу',
+		// 				control: '',
+		// 				val:  ''
+		// 			},
+		// 			{
+		// 				caption: 'Второй вопрос',
+		// 				description:  'Описание к вопросу',
+		// 				control: '',
+		// 				val:  ''
+		// 			}
+		// 	]
+		// },
+		// {
+		// 	title: 'Название раздела 2',
+		// 	questions: [
+		// 			{
+		// 				caption: 'Первый вопрос',
+		// 				description:  'Описание к вопросу',
+		// 				control: '',
+		// 				val:  ''
+		// 			},
+		// 			{
+		// 				caption: 'Второй вопрос',
+		// 				description:  'Описание к вопросу',
+		// 				control: '',
+		// 				val:  ''
+		// 			}
+		// 	]
+		// }
+	]
 	let questions = []
 	let selected
 	let typefields = [
@@ -15,30 +50,19 @@ import { debug, text } from "svelte/internal";
 		{id: 4, text: 'Да/Нет'}
 	]
 
-	// let question = {
-	// 	// title: '',
-	// 	questions: [
-	// 		{
-	// 			caption: '',
-	// 			description: '',
-	// 			control: '',
-	// 			val: ''
-	// 		}
-	// 	]		
-	// } 
+	let question =  ''
+	let description =  ''
+	let control =  ''
+	let val =  ''
 
+	
+	
 	function addChapter(e) {
+		// debugger
 		if (!namechapter) return
 		let chapter = {
 			title: namechapter,
-			questions: [
-				{
-					caption: '',
-					description: '',
-					control: '',
-					val: ''
-				}
-			]	
+			questions: []	
 		}
 		chapter = chapter
 		chapters.push(chapter)
@@ -60,12 +84,37 @@ import { debug, text } from "svelte/internal";
 	}
 
 	function addQuestion(e) {
-		
+		var namechapter = document.getElementById('chapter-name').textContent	
+		debugger
+		for (const el of chapters) {
+			if (el.title === e) {
+				let quest = {
+					caption: question,
+					description: description,
+					control: control,
+					val: val
+				}
+				el.questions = [...el.questions, quest]
+				chapters = chapters
+				question =  ''
+				description =  ''
+				control =  ''
+				val =  ''
+			}
+		}
 	}
 
-	function delQuestion(e) {
-		
+	function cleanQuestion(e) {
+		for (const el of chapters) {
+			if (el.title === e) {
+				question =  ''
+				description =  ''
+				control =  ''
+				val =  ''
+			}
+		}
 	}
+
 	function handleSubmit(e) {
 		
 	}
@@ -87,7 +136,7 @@ import { debug, text } from "svelte/internal";
 			<section class="chapter">
 				<section class="add-chapter">
 					<section>
-						<span>Раздел:</span>
+						<span>Создать раздел:</span>
 						<input type="text" bind:value={namechapter}>
 					</section>
 					<section>
@@ -96,29 +145,19 @@ import { debug, text } from "svelte/internal";
 				</section>
 				<section class="addbox">
 					{#each chapters as chapter}
-
-						<!-- <section class="add-chapter"> -->
-							<!-- <input type="text" bind:value={chapter} disabled id={chapter}> -->
-							<!-- <span class="title">{chapter}</span>
-							<section>
-								<input type="button" value="Редактировать" on:click={editChapter} class="btn-chapter">
-								<input type="button" value="Удалить" on:click={delChapter} class="btn-chapter">
-							</section>
-						</section> -->
-						
 						<section class="add-question">
 							<section class="quest">
 								<p style="margin: 5px; text-align:center;">Добавить вопрос к разделу:
-									<span style="font-weight:600;">{chapter.title}</span>
+									<span id="chapter-name" style="font-weight:600;">{chapter.title}</span>
 								</p>
 								<section>
 									<label>Вопрос:					
-										<textarea style="width: 100%;" type="text" bind:value={chapter.questions.caption}></textarea>
+										<textarea style="width: 100%;" type="text" bind:value={question}></textarea>
 									</label>
 								</section>
 								<section>
 									<span>Доп. описание:</span>					
-									<textarea style="width: 100%;" type="text" bind:value={chapter.questions.description}></textarea>
+									<textarea style="width: 100%;" type="text" bind:value={description}></textarea>
 								</section>
 								<section>
 									<span>Тип поля ответа:</span>					
@@ -130,11 +169,11 @@ import { debug, text } from "svelte/internal";
 								</section>
 								<section>
 									<span style="margin-right:6px;">Ответ:</span>					
-									<textarea style="width: 100%;" type="text" bind:value={chapter.questions.description}></textarea>
+									<textarea style="width: 100%;" type="text" bind:value={val}></textarea>
 								</section>
 								<section style="display:flex; align-items: center; justify-content:space-around">
-									<input class="add-quest" type="button" value="Добавить" on:click={addQuestion}>
-									<input class="clean" type="button" value="Очистить" on:click={delQuestion}>
+									<input class="add-quest" type="button" value="Добавить" on:click={addQuestion(chapter.title)}>
+									<input class="clean" type="button" value="Очистить" on:click={cleanQuestion(chapter.title)}>
 								</section>
 							</section>
 						</section>	
@@ -169,9 +208,19 @@ import { debug, text } from "svelte/internal";
 				<hr class="hr" />
 				<p class="title-chapter">{chapter.title}</p>
 				<section class="res-chapter">
-					<!-- {#each  as }
+					{#each chapter.questions as ch}
 						
-					{/each} -->
+						{@debug chapters}
+						<div style="display:flex; justify-content:space-between; padding-left:10px; padding-right:20px; font-size: 1.1rem; margin-bottom:15px;">
+							<div>
+								<div>{ch.caption}</div>  
+								<div style="padding-left: 10px; font-size:0.8rem; opacity: 0.6;">{ch.description}</div>
+							</div>
+							<div>
+								<input type="checkbox" />
+							</div>
+						</div>
+					{/each}
 				</section>
 				<section>
 					<input class="res-btn" type="button" value="Далее >" />
