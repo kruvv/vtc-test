@@ -1,35 +1,22 @@
 <template>
-  <div id="app">
-    <h1>Введите данные для поиска</h1>
-    <Form/>
+  <div class="container mt-4">    
+    <Form />
   </div>
 </template>
 
 <script>
-import Form from './components/FormFirst.vue'
+import Form from './pages/FormFirst.vue'
+
 
 export default {
-  name: 'app',
   components: {
     Form
   }
+  
+  
 }
 </script>
 
 <style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* text-align: center; */
-    color: #2c3e50;
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;   
-  }
-
-  h1 {
-      margin-bottom: 40px;
-  }
+  
 </style>
