@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">    
+  <div class="container mt-2">
     <Form />
   </div>
 </template>
@@ -12,11 +12,11 @@ export default {
   components: {
     Form
   }
-  
-  
+
+
 }
 </script>
 
 <style>
-  
+
 </style>
