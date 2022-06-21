@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-2">
+  <div class="container mt-3 mb-3">
     <Form />
   </div>
 </template>
