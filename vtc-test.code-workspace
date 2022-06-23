@@ -27,7 +27,18 @@
 				],
 				"program": "/home/kruvv/vtcservice/vtc-test/form-questionnaire/main.js",
 				"__workspaceFolder": "/home/kruvv/vtcservice/vtc-test/form-questionnaire"
-			}
+			},
+			{
+				"type": "chrome",
+				"request": "launch",
+				"name": "vuejs: chrome",
+				"url": "http://localhost:8080",
+				"webRoot": "/home/kruvv/vtcservice/vtc-test/form-info/src",
+				"breakOnLoad": true,
+				"sourceMapPathOverrides": {
+				  "webpack:///src/*": "${webRoot}/*"
+				}
+			  },
 		]
 	}
 }
